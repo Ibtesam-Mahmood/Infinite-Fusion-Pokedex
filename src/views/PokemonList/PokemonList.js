@@ -7,7 +7,7 @@ import './PokemonList.css';
 export default function PokemonList({ pokemon }) {
 
   // Items on a page
-  const pageCount = 150;
+  const pageCount = 50;
 
   const pokedex = useContext(PokedexContext);
 
