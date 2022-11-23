@@ -1,0 +1,31 @@
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import loadPokemonThunkAction from '../state/InfinitePokedexStore/thunk/loadPokemonThunkAction';
+
+export default function PokemonDetailsPage({ pokemonInfo }) {
+
+  const {id} = useParams();
+
+  const pokemap = useSelector(state => state.pokemap);
+  const dispatch = useDispatch();
+
+  const pokemon = pokemap[parseInt(id)];
+
+  useEffect(() => {
+    if(pokemon == null){
+      dispatch(loadPokemonThunkAction({id: id}));
+    }
+  }, []);
+
+  return (
+    <div>
+      {(
+        pokemon != null ? <>
+          {(pokemon.sprites != null ? <img src={pokemon.sprites.front_default} /> : null)}
+          {(pokemon != null ? <p>{JSON.stringify(pokemon)}</p> : null)}
+        </> : null
+      )}
+    </div>
+  )
+}
