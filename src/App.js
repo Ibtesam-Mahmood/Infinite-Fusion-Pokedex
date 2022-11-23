@@ -1,48 +1,28 @@
-import React, { createContext, useContext, useEffect, useState } from 'react'
-import PokemonList from './views/PokemonList'
-import PokedexContext from './state/PokedexContext'
-import Pokedex from 'pokedex-promise-v2';
-import {PokemonInfo} from './models/pokemon';
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux';
+import PokemonListPage from './pages/PokemonListPage';
+import getPokemonThunkAction from './state/InfinitePokedexStore/thunk/getPokemonThunkAction';
+import {Router, Routes, Route} from 'react-router-dom';
+import RouterWrapper from './services/router/RouterWrapper';
+
 
 export default function App() {
 
-  //Hooks
-  
-  // pokedex api variable
-  const pokedex = new Pokedex();
+  //Hooks and state
 
-  // pokemon list state
-  const [pokemon, setPokemon] = useState([]);
+  // Redux state
+  const dispatch = useDispatch();
   
   // Get the pokemon when the state reloads
   useEffect(() => {
-    getPokemon();
+    dispatch(getPokemonThunkAction());
   }, []);
-  
-  //Helpers
-
-  // Retreives the pokemon and aplies them to the state
-  async function getPokemon() {
-    try {
-      const result = await pokedex.getPokemonsList();
-      const pokemonList = result.results.map(e => PokemonInfo.from(e));
-      console.log(pokemonList);
-      setPokemon(pokemonList);
-    } catch (error) {
-      console.error(error);
-    }
-  }
   
   // Build
 
   return (
     <>
-      <PokedexContext.Provider value={pokedex}>
-        {
-          pokemon.length != 0 ?
-          <PokemonList pokemon={pokemon} /> : null
-        }
-      </PokedexContext.Provider>
+      <RouterWrapper />
     </>
   )
 }

@@ -5,7 +5,7 @@ class PokemonInfo{
 
     static from(json){
         const parsed = Object.assign(new PokemonInfo(), json);
-        parsed.id = parsed.url.split('/').reverse()[1];
+        parsed.id = parseInt(parsed.url.split('/').reverse()[1]);
         return parsed;
     }
 

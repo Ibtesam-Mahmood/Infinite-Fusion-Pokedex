@@ -1,6 +1,4 @@
-import React, { useContext, useState } from 'react'
-import { Pokemon } from '../models/pokemon';
-import PokedexContext from '../state/PokedexContext';
+import React, { useState } from 'react'
 import PokemonListItem from './PokemonListItem';
 import './PokemonList.css';
 
@@ -9,41 +7,8 @@ export default function PokemonList({ pokemon }) {
   // Items on a page
   const pageCount = 50;
 
-  const pokedex = useContext(PokedexContext);
-
-  const [pokeMap, setPokeMap] = useState(pokemon.reduce((map, p) => {
-    map[p.id] = null;
-    return map;
-  }));
-
   // The state for the current page
   const [page, setPage] = useState(0);
-
-  async function loadDataForPokemonWithID(id) {
-    if(pokeMap[id] == null){
-      try {
-        const result = await pokedex.getPokemonByName(parseInt(id));
-        setPokeMap(updateMapwithResults(result, id));
-      } catch (error) {
-        console.log(error)
-      }
-    } else {
-      console.log('Data loaded for pokemon with id: ' + id);
-    }
-  }
-
-  function updateMapwithResults(result, id){
-    return map => {
-      const newPokemon = Pokemon.from(result)
-      const newMap = {...map};
-      newMap[id] = newPokemon;
-      return newMap;
-    };
-  }
-
-  function getItemFromID(map, id){
-    return map[id];
-  }
 
   function getLastPageCount(){
     return Math.floor(pokemon.length / pageCount);
@@ -69,8 +34,6 @@ export default function PokemonList({ pokemon }) {
           <PokemonListItem 
             key={p.getID()} 
             pokemonInfo={p} 
-            pokemon={getItemFromID(pokeMap, p.getID())} 
-            loadData={loadDataForPokemonWithID} 
           />
       ))}
     </div>
