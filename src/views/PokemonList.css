@@ -1,0 +1,11 @@
+.grid-container{
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+.grid-item {
+    height: 400;
+    width: 400;
+    background-color: grey;
+    text-align: center;
+    /* display: inline-grid; */
+}
