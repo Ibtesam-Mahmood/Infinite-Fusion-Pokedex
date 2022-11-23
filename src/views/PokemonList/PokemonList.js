@@ -29,7 +29,7 @@ export default function PokemonList({ pokemon }) {
   return (
     <div>
 
-    <div className="grid-container">
+    <div>
         {pokemon.slice(page * pageCount, (page * pageCount) + pageCount).map(p => (
           <PokemonListItem 
             key={p.getID()} 
