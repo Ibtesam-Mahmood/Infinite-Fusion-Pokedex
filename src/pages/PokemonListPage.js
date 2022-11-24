@@ -1,4 +1,4 @@
-import PokemonList from '../views/PokemonList/PokemonList';
+import PaginatedPokemonList from '../views/PokemonList/PaginatedPokemonList';
 import React from 'react'
 import { useSelector } from 'react-redux';
 
@@ -8,7 +8,7 @@ export default function PokemonListPage() {
 
   return (
     <>
-        {pokemon.length != 0 ? <PokemonList pokemon={pokemon} /> : null}
+        {pokemon.length != 0 ? <PaginatedPokemonList pokemon={pokemon} /> : null}
     </>
   )
 }

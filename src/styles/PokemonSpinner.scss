@@ -1,0 +1,74 @@
+
+$pokeballColors: rgb(238, 21, 21), rgb(59, 157, 255), rgb(255, 187, 0), rgb(93, 15, 171); 
+
+$randomColor: nth($pokeballColors, random(length($pokeballColors)));
+
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes #{$animation-name} {
+    @content;
+  }
+  @-moz-keyframes #{$animation-name} {
+    @content;
+  }  
+  @-ms-keyframes #{$animation-name} {
+    @content;
+  }
+  @-o-keyframes #{$animation-name} {
+    @content;
+  }  
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+
+@mixin animation($str) {
+  -webkit-animation: #{$str};
+  -moz-animation: #{$str};
+  -ms-animation: #{$str};
+  -o-animation: #{$str};
+  animation: #{$str};      
+}
+
+@include keyframes(spinner-animation) {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.pokemonLoadingSpinner{
+
+    height: 100px;
+    width: 100px;
+    background: linear-gradient(to bottom, $randomColor 50%, white 50%);
+    border: 4px solid black;
+    border-radius: 50%;
+    position: relative;
+    // transform: rotate(0deg);
+    @include animation('spinner-animation 1s ease-in-out infinite');
+
+    &::before{
+        position: absolute;
+        height: 6px;
+        width: 95px;
+        border-radius: 10%;
+        background: black;
+        top: 46px;
+        content: '';
+        transform: translatey(-50%);
+    }
+    &::after{
+        position: absolute;
+        content: '';
+        height: 38px;
+        width: 38px;
+        background: white;
+        top: 46px;
+        left: 46px;
+        transform: translate(-50%, -50%);
+        box-shadow: inset 0 0 0 8px black, inset 0 0 0 10px white, inset 0 0 0 12px black;
+        border-radius: 50%;
+    }
+}

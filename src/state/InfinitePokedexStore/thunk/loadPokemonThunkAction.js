@@ -1,6 +1,6 @@
 import {Pokemon} from '../../../models/pokemon';
-import PokemonStoreAction from '../simpleActions';
-import pokedex from '../../../services/pokedex';
+import PokemonStoreActions from '../simpleActions';
+import PokedexApi from '../../../services/api/pokedexAPI';
 
 
 const loadPokemonThunkAction = ({id, onStart = ()=>{}, onComplete = (pokemon)=>{}}) => {
@@ -8,6 +8,7 @@ const loadPokemonThunkAction = ({id, onStart = ()=>{}, onComplete = (pokemon)=>{
 
     // Call the onStart callback
     onStart();
+    // console.log('Running thunk action');
     
     // Get the current state of the store for the pokemon
     const {pokemap} = getState();
@@ -18,17 +19,10 @@ const loadPokemonThunkAction = ({id, onStart = ()=>{}, onComplete = (pokemon)=>{
         return;
     }
     
-    let pokemon = null;
-    try {
-        // Get the pokemon from the pokedex
-        const response = await pokedex.getPokemonByName(parseInt(id));
-        
-        // Parse the pokemon into a Pokemon object and dispatch it to the store
-        pokemon = Pokemon.from(response);
-        console.log(pokemon);
-        dispatch(PokemonStoreAction.setPokemon(pokemon));
-    } catch (error) {
-        console.error(error);
+    const pokemon = await PokedexApi.getPokemonByID(id);
+    
+    if(pokemon != null){
+      dispatch(PokemonStoreActions.setPokemon(pokemon));
     }
 
     // Call the onComplete callback

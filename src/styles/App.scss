@@ -1,5 +1,14 @@
 @import "~bootstrap/scss/bootstrap";
 
+html, body{
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  
+}
+
 .debug {
   background-color: red;
 }

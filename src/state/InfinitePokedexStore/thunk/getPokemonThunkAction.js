@@ -11,7 +11,7 @@ const getPokemonThunkAction = () => {
       
       // Parse the pokemon into a list of PokemonInfo objects and dispatch them to the store
       const pokemon = response.results.map(e => PokemonInfo.from(e));
-      console.log(pokemon);
+      // console.log(pokemon);
       dispatch(PokemonStoreAction.setPokemonInfo(pokemon));
     } catch (error) {
       console.error(error);

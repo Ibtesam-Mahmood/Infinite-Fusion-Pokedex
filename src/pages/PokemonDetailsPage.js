@@ -7,25 +7,17 @@ export default function PokemonDetailsPage({ pokemonInfo }) {
 
   const {id} = useParams();
 
-  const pokemap = useSelector(state => state.pokemap);
-  const dispatch = useDispatch();
-
-  const pokemon = pokemap[parseInt(id)];
-
-  useEffect(() => {
-    if(pokemon == null){
-      dispatch(loadPokemonThunkAction({id: id}));
-    }
-  }, []);
+  
 
   return (
-    <div>
-      {(
-        pokemon != null ? <>
-          {(pokemon.sprites != null ? <img src={pokemon.sprites.front_default} /> : null)}
-          {(pokemon != null ? <p>{JSON.stringify(pokemon)}</p> : null)}
-        </> : null
-      )}
-    </div>
+    <></>
+    // <div>
+    //   {(
+    //     pokemon != null ? <>
+    //       {(pokemon.sprites != null ? <img src={pokemon.sprites.front_default} /> : null)}
+    //       {(pokemon != null ? <p>{JSON.stringify(pokemon)}</p> : null)}
+    //     </> : null
+    //   )}
+    // </div>
   )
 }
