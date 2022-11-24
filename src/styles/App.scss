@@ -1,0 +1,46 @@
+@import "~bootstrap/scss/bootstrap";
+
+.debug {
+  background-color: red;
+}
+
+.debug2 {
+  background-color: blue;
+}
+
+.blur {
+  filter: blur(10px);
+}
+
+.typeImage{
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+}
+
+// .card-img-top {
+    // }
+    
+.pokemonImage{
+    background-color: $secondary;
+    max-height: 150px;
+    max-width: 150px;
+    object-fit: cover;
+    border-radius: 0%;
+    transition: 0.2s ease-in-out;
+}
+
+.pokemonCard{
+    min-width: fit-content;
+    // cursor: pointer;
+}
+
+.pokeNumberBox{
+    color: $dark;
+    font-weight: bold;
+    border: 0.5px solid wheat;
+    background-color: blanchedalmond;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}

@@ -46,7 +46,7 @@ const TypeImagesMap = new Map(
     )
 );
 
-console.log(TypeImagesMap);
+// console.log(TypeImagesMap);
 
 export const TypeImages = TypeImagesMap;
 export const TypeNames = typeNames;

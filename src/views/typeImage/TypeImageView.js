@@ -8,10 +8,16 @@ export default function TypeImageView({typeOne, typeTwo = null}) {
 
     // console.log(`(${typeOne}, ${typeTwo}) => [${imageOne}, ${imageTwo}]`);
 
+    const imageStyle = {
+        width: "auto",
+        minHeight: "5px",
+        maxHeight: "20px"
+    }
+
     return (
-        <>
-            <img src={imageOne} height="20" />
-            {imageTwo != null ? <img src={imageTwo} height="20" /> : null}
-        </>
+        <div className='p-0 m-0 d-inline-flex flex-row' style={{maxWidth: 100, minWidth: 10}}>
+            <img className='pe-1 typeImage img-fluid' src={imageOne} style={imageStyle} />
+            {imageTwo != null ? <img src={imageTwo} className='typeImage img-fluid' style={imageStyle} /> : null}
+        </div>
     )
 }

@@ -24,6 +24,14 @@ class Pokemon{
         // console.log(parsed);
         return parsed;
     }
+    
+    getFirstType(){
+        return this.types[0].type.name;
+    }
+
+    getSecondType(){
+        return this.types.length > 1 ? this.types[1].type.name : null;
+    }
 
 }
 

@@ -4,6 +4,8 @@ import PokemonStore from './state/InfinitePokedexStore/store';
 import { Provider } from 'react-redux';
 import App from './App';
 
+// Importing the Bootstrap CSS
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 

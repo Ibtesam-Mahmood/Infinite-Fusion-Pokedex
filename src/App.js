@@ -5,6 +5,8 @@ import getPokemonThunkAction from './state/InfinitePokedexStore/thunk/getPokemon
 import {Router, Routes, Route} from 'react-router-dom';
 import RouterWrapper from './services/router/RouterWrapper';
 
+import './styles/App.scss';
+
 
 export default function App() {
 

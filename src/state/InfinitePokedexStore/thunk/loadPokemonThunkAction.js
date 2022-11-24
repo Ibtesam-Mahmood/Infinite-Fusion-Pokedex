@@ -22,10 +22,10 @@ const loadPokemonThunkAction = ({id, onStart = ()=>{}, onComplete = (pokemon)=>{
     try {
         // Get the pokemon from the pokedex
         const response = await pokedex.getPokemonByName(parseInt(id));
-        // console.log(response);
         
         // Parse the pokemon into a Pokemon object and dispatch it to the store
         pokemon = Pokemon.from(response);
+        console.log(pokemon);
         dispatch(PokemonStoreAction.setPokemon(pokemon));
     } catch (error) {
         console.error(error);
