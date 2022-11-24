@@ -32,7 +32,7 @@ export default function PokemonListItem({ pokemonInfo }) {
 
   return (
     <div className='pokemonCard'>
-      <Link to={`/pokemon/${pokemonInfo.getID()}`} style={{ textDecoration: 'none' }}>
+      <Link to={`/poke-fusion-dex/pokemon/${pokemonInfo.getID()}`} style={{ textDecoration: 'none' }}>
         <Card
           bg='dark'
           text='white'

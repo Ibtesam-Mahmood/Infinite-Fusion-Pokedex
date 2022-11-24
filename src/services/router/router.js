@@ -1,15 +1,19 @@
-import { createBrowserRouter } from "react-router-dom"
+import { createBrowserRouter, Navigate } from "react-router-dom"
 import PokemonDetailsPage from "../../pages/PokemonDetailsPage";
 import PokemonListPage from "../../pages/PokemonListPage"
 
 const router = createBrowserRouter([
     {
-        path: "/",
+        path: "/poke-fusion-dex",
         element: <PokemonListPage />,
     },
     {
-        path: "/pokemon/:id",
+        path: "/poke-fusion-dex/pokemon/:id",
         element: <PokemonDetailsPage />,
+    },
+    {
+        path: "*",
+        element: <Navigate to="/poke-fusion-dex" replace />,
     },
 ])
 

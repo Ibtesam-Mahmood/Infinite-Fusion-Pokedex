@@ -1,5 +1,5 @@
 
-class PokemonInfo{
+export class PokemonInfo{
 
     constructor(){}
 
@@ -15,7 +15,7 @@ class PokemonInfo{
 
 }
 
-class Pokemon{
+export class Pokemon{
 
     constructor(){}
 
@@ -34,6 +34,3 @@ class Pokemon{
     }
 
 }
-
-exports.PokemonInfo = PokemonInfo;
-exports.Pokemon = Pokemon;
