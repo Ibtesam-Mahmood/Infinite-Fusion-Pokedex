@@ -11,7 +11,7 @@ const LOADING_STATE = {
   ERROR: 'ERROR'
 }
 
-export default function PaginatedPokemonList({ pokemon, search = '', pageCount = 1154 }) {
+export default function PaginatedPokemonList({ pokemon, search = '', pageCount = 1200 }) {
   
   // The state for the current page
   const [page, setPage] = useState(0);
@@ -30,7 +30,7 @@ export default function PaginatedPokemonList({ pokemon, search = '', pageCount =
 
   useEffect(() => {
     loadPage(0);
-  }, []);
+  }, [search]);
 
   async function loadPage(pageIndex, delay = 0){
     // Loads all the pokemon in the page

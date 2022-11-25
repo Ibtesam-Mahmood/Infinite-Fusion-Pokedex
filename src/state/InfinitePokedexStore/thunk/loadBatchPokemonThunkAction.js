@@ -8,7 +8,7 @@ const loadBatchPokemonThunkAction = ({ids, onStart = ()=>{}, onComplete = (pokem
 
     // Call the onStart callback
     onStart();
-    console.log('Running thunk action');
+    console.log(`Loading [${ids.length}] batch of pokemon...`);
     
     // Get the current state of the store for the pokemon
     const {pokemap} = getState();
@@ -32,14 +32,17 @@ const loadBatchPokemonThunkAction = ({ids, onStart = ()=>{}, onComplete = (pokem
       pokemonRequestMap[pokemon.id] = pokemon;
     });
 
+    // Removes null values from the pokemonRequestMap
+
     // Retreive the list of pokemon from the pokemonRequestMap
     // Then dispatches them to the store
-    const pokemonList = Object.values(pokemonRequestMap);
+    const pokemonList = Object.values(pokemonRequestMap).filter(e => e != null);
     pokemonList.forEach(pokemon => {
       dispatch(PokemonStoreAction.setPokemon(Pokemon.from(pokemon)));
     });
 
     // Call the onComplete callback
+    console.log(`Loaded [${pokemonList.length}] pokemon...`);
     onComplete(pokemonList);
   }
 }

@@ -1,0 +1,63 @@
+@import "~bootstrap/scss/bootstrap";
+
+.pokemonHeader{
+  position: relative;
+  height: 500px;
+  width: 100%;
+}
+  
+.pokemonHeader .pokemonHeaderImage{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("../assets/pokemon-backdrop.jpg");
+  background-size: cover;
+  filter: blur(20px)  saturate(200%);
+  z-index: -10;
+}
+
+.pokemonHeader .pokemonHeaderContnet{
+  position: relative;
+  z-index: 10;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+
+  h1{
+    color: $dark;
+    text-shadow: 5px 5px 10px rgba($dark, 0.7);
+    font-size: 15vw;
+    font-weight: bolder;
+    text-align: center;
+  }
+  
+  h6{
+    color: rgba($dark, 0.87);
+    text-shadow: 5px 5px 10px rgba($dark, 0.7);
+    text-align: center;
+    
+    a{
+      color: $dark;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  }
+}
+
+.searchPokemon {
+  border: 3px solid rgba($primary, 0.5);
+  background-color: $light;
+  font-weight: 600;
+  text-align: center;
+
+  &:focus {
+    color: $dark;
+    border: 3px solid $primary;
+    box-shadow: 0 0 0 0.2rem rgba($primary, 0.25);
+    &::placeholder {
+      color: transparent;
+    }
+  }
+}

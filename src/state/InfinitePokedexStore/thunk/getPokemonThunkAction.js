@@ -10,7 +10,11 @@ const getPokemonThunkAction = () => {
       const response = await pokedex.getPokemonsList();
       
       // Parse the pokemon into a list of PokemonInfo objects and dispatch them to the store
-      const pokemon = response.results.map(e => PokemonInfo.from(e));
+      let pokemon = response.results.map(e => PokemonInfo.from(e));
+
+      // Filter out pokemon that have an id greater than 898
+      pokemon = pokemon.filter(e => parseInt(e.getID()) <= 898);
+
       // console.log(pokemon);
       dispatch(PokemonStoreAction.setPokemonInfo(pokemon));
     } catch (error) {
