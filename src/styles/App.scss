@@ -21,6 +21,10 @@ body {
   filter: blur(10px);
 }
 
+.darkenItem {
+  filter: saturate(50%);
+}
+
 .typeImage{
     padding: 0;
     background-color: transparent;
@@ -41,7 +45,7 @@ body {
 }
 
 .pokemonCard{
-    min-width: fit-content;
+    min-width: 170px;
     // cursor: pointer;
 }
 

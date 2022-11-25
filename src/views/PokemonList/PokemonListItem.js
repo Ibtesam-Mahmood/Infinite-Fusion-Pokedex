@@ -20,13 +20,13 @@ export default function PokemonListItem({ pokemonInfo }) {
   const hovered = useHover(hoverRef);
 
   function getClassNameByPokemonType() {
-    if(pokemon == null || !hovered){
+    if(pokemon == null){
       return ''
     };
 
     const typeOne = pokemon.getFirstType();
     // console.log(typeOne);
-    return `blur typeBackground-${typeOne}`;
+    return `${hovered ? 'blur' : 'darkenItem'} typeBackground-${typeOne}`;
 
   }
 
@@ -42,12 +42,14 @@ export default function PokemonListItem({ pokemonInfo }) {
           <Card.Header className="p-0">
             <Card.Title className="mx-2 my-1 text-center">{capatalize(pokemonInfo.name)}</Card.Title>
           </Card.Header>
-          <Card.Img 
-            variant='top' 
-            className={`${getClassNameByPokemonType()} pokemonImage img-fluid`} 
-            loading="lazy"
-            src={spriteImg}
-          />
+          <div>
+            <Card.Img 
+              variant='top' 
+              className={`${getClassNameByPokemonType()} pokemonImage img-fluid`} 
+              loading="lazy"
+              src={spriteImg}
+            />
+          </div>
           <Card.Img
             variant='overlay' 
             style={{objectFit: "cover", display: hovered ? "block" : "none", transition: "visible 1s"}}

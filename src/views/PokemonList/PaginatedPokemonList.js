@@ -11,17 +11,15 @@ const LOADING_STATE = {
   ERROR: 'ERROR'
 }
 
-export default function PaginatedPokemonList({ pokemon, search = '' }) {
-
-  // Items on a page
-  const pageCount = 192;
-
+export default function PaginatedPokemonList({ pokemon, search = '', pageCount = 1154 }) {
+  
   // The state for the current page
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(LOADING_STATE.LOADED);
 
   // Filters the pokemon by the search term
   const filteredPokemon = pokemon.filter(p => p.name.toLowerCase().includes(search.toLowerCase()));
+  const fullPage = pageCount >= filteredPokemon.length; // Hides the buttons
   
   // Redux
   const dispatch = useDispatch();
@@ -107,9 +105,9 @@ export default function PaginatedPokemonList({ pokemon, search = '' }) {
     
     <div className='d-flex justify-content-center my-3'>
       <ButtonGroup>
-        <Button disabled={page == 0} onClick={prevPage}>Back</Button>
+        {(fullPage ? null : <Button disabled={page == 0} onClick={prevPage}>Back</Button>)}
         <Button disabled={true}>{page * pageCount} - {Math.min((page + 1) * pageCount, filteredPokemon.length)} of {filteredPokemon.length}</Button>
-        <Button disabled={page == getLastPageCount()} onClick={nextPage}>Next</Button>
+        {(fullPage ? null : <Button disabled={page == getLastPageCount()} onClick={nextPage}>Next</Button>)}
       </ButtonGroup>
     </div>
 
