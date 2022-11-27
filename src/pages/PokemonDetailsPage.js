@@ -8,6 +8,7 @@ import {useLoadPokemon, useEvolutionChain, usePokemonSpecies} from '../services/
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import PokemonStats from '../views/PokemonDetails/PokemonStats';
+import PokemonMoves from '../views/PokemonDetails/PokemonMoves';
 import PokemonTypeImage from "../views/typeImage/PokemonTypeImage";
 
 import '../styles/PokemonDetails.scss';
@@ -23,11 +24,10 @@ export default function PokemonDetailsPage() {
 
   const searchRef = useRef();
 
-  console.log(pokemon);
-  console.log(species);
-  console.log(evolution);
-  console.log('-------')
+  // console.log(pokemon);
+  // console.log(species);
   // console.log(evolution);
+  // console.log('-------');
 
   function handleKeyDown(e) {
     if (e.key === 'Enter') {
@@ -117,15 +117,23 @@ export default function PokemonDetailsPage() {
             </Col>
           </Row>
         </Col>
+        
         <Col sm={12} md={6} lg={3} className='detailsBodyCol'>
           <Row className='h-100'>
+            {/* Pokemon Evolution */}
             <Col sm={12} className='debug detailsBodyItem'>1</Col>
+
+            {/* Pokemon Location */}
             <Col sm={12} className='debug2 detailsBodyItem'>1</Col>
           </Row>
         </Col>
-        <Col sm={12} md={6} lg={3} className='detailsBodyCol debug'>
-          <p>hello</p>
+
+        {/* Pokemon Moves */}
+        <Col sm={12} md={6} lg={3} className='detailsBodyCol p-1 d-flex'>
+          <PokemonMoves pokemon={pokemon} className='detailsBodyItem' />
         </Col>
+
+        
         <Col sm={12} md={6} lg={3} className='detailsBodyCol'>
           <Row className='h-100'>
             <Col sm={12} className='debug2 detailsBodyItem'>1</Col>
