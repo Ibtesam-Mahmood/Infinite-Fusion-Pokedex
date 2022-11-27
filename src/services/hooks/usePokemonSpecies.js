@@ -7,11 +7,12 @@ const usePokemonSpeciesHook = (id, load = false) => {
     const species = useSelector(state => state.species);
     const dispatch = useDispatch();
 
-    const pokemon = species[parseInt(id)];
+    const pokemon = id == null ? null : species[parseInt(id)];
 
     // On init state attempt to fetch the pokemon
     useEffect(() => {
-        if(pokemon == null && load){
+        // console.log('RUNNING HOOK');
+        if(pokemon == null && load && id != null){
             dispatch(PokemonStoreAction.thunk.loadSpeciesByID({id: id}));
         }
     }, [id, load]);

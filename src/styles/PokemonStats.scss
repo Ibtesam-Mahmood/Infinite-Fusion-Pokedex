@@ -1,0 +1,10 @@
+@import "~bootstrap/scss/bootstrap";
+
+.statsContainer{
+    min-height: 100px;
+    width: 100%;
+    background-color: rgba($dark, 0.9);
+    border-radius: 10px;
+    border: 5px solid $dark;
+    color: $light;
+}

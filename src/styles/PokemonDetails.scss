@@ -1,0 +1,58 @@
+@import "~bootstrap/scss/bootstrap";
+
+.detailsRoot{
+    position: relative;
+    width: 100%;
+    // height: fill-available;
+    margin: 0;
+    // display: flex;
+
+    // .row .col{
+    //     height: ;
+    // }
+    .detailsBody{
+        height: fit-content;
+        width: 100vw;
+        margin: auto
+        
+    }
+    .detailsBodyCol{
+        // height: 100vh;
+        
+    }
+    .detailsBodyItem{
+        height: fit-content;
+        justify-content: center;
+        display: flex;
+        min-height: 40px;
+        align-items: center;
+        
+        .outlineContainer{
+            max-height: 40px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: $dark;
+            background-color: rgba($secondary, 0.5);
+            // border-radius: 5px;
+            border: 1.5px solid $dark;
+            
+            &.pokemonNumber{
+                border-radius: 5px 0px 0px 5px;
+            }
+            &.pokemonName{
+                border-radius: 0px 5px 5px 0px;
+            }
+        }
+    }
+    .pokemonDetailImage{
+        min-height: 300px;
+        height: 100%;
+        width: auto;
+        object-fit: cover;
+        background-color: rgba($secondary, 0.5);
+        border-radius: 10%;
+        border: 8px solid $secondary;
+        // height: 100vh;
+        
+    }
+}

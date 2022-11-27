@@ -7,11 +7,11 @@ const useEvolutionChainHook = (id, load = false) => {
     const chains = useSelector(state => state.chains);
     const dispatch = useDispatch();
 
-    const evolution = chains[parseInt(id)];
+    const evolution = id == null ? null : chains[parseInt(id)];
 
     // On init state attempt to fetch the pokemon
     useEffect(() => {
-        if(evolution == null && load){
+        if(evolution == null && load && id != null){
             dispatch(PokemonStoreAction.thunk.loadEvolutionChain({id: id}));
         }
     }, [load, id]);

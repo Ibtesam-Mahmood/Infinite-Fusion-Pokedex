@@ -11,7 +11,7 @@ const LOADING_STATE = {
   ERROR: 'ERROR'
 }
 
-export default function PaginatedPokemonList({ pokemon, search = '', pageCount = 1200 }) {
+export default function PaginatedPokemonList({ pokemon, search = '', pageCount = 150 }) {
   
   // The state for the current page
   const [page, setPage] = useState(0);

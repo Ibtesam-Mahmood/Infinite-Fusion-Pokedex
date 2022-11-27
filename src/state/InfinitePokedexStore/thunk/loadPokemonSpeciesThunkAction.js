@@ -8,11 +8,12 @@ const loadPokemonSpeciesThunkAction = ({id, onStart = ()=>{}, onComplete = (spec
 
     // Call the onStart callback
     onStart();
-    // console.log('Running thunk action');
+    console.log('Running thunk action');
     
     // Get the current state of the store for the pokemon
     const {species} = getState();
-
+    console.log(species);
+    
     // If the pokemon is already in the store, exit and call the onComplete callback
     if(species[id] != null) {
         onComplete(species[id]);

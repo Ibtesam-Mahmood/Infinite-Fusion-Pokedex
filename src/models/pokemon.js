@@ -24,6 +24,10 @@ export class Pokemon{
         // console.log(parsed);
         return parsed;
     }
+
+    getSpeciesID(){
+        return parseInt(this.species.url.split('/').reverse()[1]);
+    }
     
     getFirstType(){
         return this.types[0].type.name;
@@ -42,6 +46,10 @@ export class PokemonSpecies{
         const parsed = Object.assign(new PokemonSpecies(), json);
         // console.log(parsed);
         return parsed;
+    }
+
+    getEvolutionID(){
+        return parseInt(this.evolution_chain.url.split('/').reverse()[1]);
     }
 }
 

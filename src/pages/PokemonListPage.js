@@ -1,6 +1,7 @@
 import PaginatedPokemonList from '../views/PokemonList/PaginatedPokemonList';
 import React, {useEffect, useState} from 'react'
 import { useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 import SiteLogo from "../views/SiteLogo";
 
 import '../styles/PokemonHeader.scss';
@@ -9,8 +10,12 @@ export default function PokemonListPage() {
 
   const pokemon = useSelector(state => state.pokemonInfo);
 
+  const [searchParams] = useSearchParams();
+
   const [searchTerm, setSearchTerm] = useState('');
   const [filterTerm, setFilterTerm] = useState('');
+
+  const filterOverrideParam = searchParams.get("search");
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
@@ -52,7 +57,14 @@ export default function PokemonListPage() {
         </div>
       </div>
 
-      {pokemon.length != 0 ? <PaginatedPokemonList pokemon={pokemon} search={filterTerm} /> : null}
+      {
+        pokemon.length != 0 ? 
+          <PaginatedPokemonList 
+            pokemon={pokemon} 
+            search={filterOverrideParam ?? filterTerm} 
+          /> 
+          : null
+      }
     </>
   )
 }
