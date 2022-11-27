@@ -34,3 +34,23 @@ export class Pokemon{
     }
 
 }
+
+export class PokemonSpecies{
+    constructor(){}
+
+    static from(json){
+        const parsed = Object.assign(new PokemonSpecies(), json);
+        // console.log(parsed);
+        return parsed;
+    }
+}
+
+export class EvolutionInfo{
+    constructor(){}
+
+    static from(json){
+        const parsed = Object.assign(new EvolutionInfo(), json);
+        // console.log(parsed);
+        return parsed;
+    }
+}
