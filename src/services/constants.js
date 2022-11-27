@@ -48,6 +48,10 @@ const TypeImagesMap = new Map(
 
 // console.log(TypeImagesMap);
 
+const TypeEffectiveness = {
+    
+};
+
 export const TypeImages = TypeImagesMap;
 export const TypeNames = typeNames;
 // export default {

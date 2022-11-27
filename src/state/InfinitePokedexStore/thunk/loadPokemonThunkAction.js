@@ -30,4 +30,4 @@ const loadPokemonThunkAction = ({id, onStart = ()=>{}, onComplete = (pokemon)=>{
   }
 }
 
-export default loadPokemonThunkAction;
+export default loadPokemonThunkAction; 

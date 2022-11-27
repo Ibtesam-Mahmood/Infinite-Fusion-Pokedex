@@ -51,6 +51,10 @@ export class PokemonSpecies{
     getEvolutionID(){
         return parseInt(this.evolution_chain.url.split('/').reverse()[1]);
     }
+
+    getPokemonID(){
+        return parseInt(this.varieties[0].pokemon.url.split('/').reverse()[1]);
+    }
 }
 
 export class EvolutionInfo{
@@ -58,7 +62,43 @@ export class EvolutionInfo{
 
     static from(json){
         const parsed = Object.assign(new EvolutionInfo(), json);
-        // console.log(parsed);
+        console.log(parsed);
+        parsed.chain = EvolutionInfo.getEvolutionChain(parsed);
         return parsed;
+    }
+
+    static getEvolutionChain(info){
+        const chain = [];
+        let current = [info.chain];
+        while(current != null){
+
+            const chainLayer = [];
+            current.forEach(e => {
+                chainLayer.push({
+                    ...e.species,
+                    speciesID: parseInt(e.species.url.split('/').reverse()[1]),
+                    details: e.evolution_details != null ? e.evolution_details[0] : null
+                })
+            });
+            
+            if(chainLayer.length > 0){
+                chain.push(chainLayer);
+            }
+            current = current[0]?.evolves_to;
+        }
+        // console.log('PARSED');
+        // console.log(info.chain);
+        // console.log(chain);
+        return chain;
+    }
+
+    getSpeciesIDs(){
+        const ids = [];
+        this.chain.forEach(e => {
+            e.forEach(e => {
+                ids.push(e.speciesID);
+            });
+        });
+        return ids;
     }
 }

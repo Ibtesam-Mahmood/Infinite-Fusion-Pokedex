@@ -4,10 +4,11 @@ import { useParams, useNavigate } from 'react-router-dom';
 import loadPokemonThunkAction from '../state/InfinitePokedexStore/thunk/loadPokemonThunkAction';
 import {Row, Col} from 'react-bootstrap';
 import SiteLogo from "../views/SiteLogo";
-import {useLoadPokemon, useEvolutionChain, usePokemonSpecies} from '../services/hook';
+import {useLoadPokemon, useEvolutionChain, useSpecies} from '../services/hook';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import PokemonStats from '../views/PokemonDetails/PokemonStats';
+import PokemonEvolutionDetails from '../views/PokemonDetails/PokemonEvolutionDetails';
 import PokemonMoves from '../views/PokemonDetails/PokemonMoves';
 import PokemonTypeImage from "../views/typeImage/PokemonTypeImage";
 
@@ -19,7 +20,7 @@ export default function PokemonDetailsPage() {
 
   const {id} = useParams();
   const pokemon = useLoadPokemon(id);
-  const species = usePokemonSpecies(pokemon?.getSpeciesID(), true);
+  const species = useSpecies(pokemon?.getSpeciesID(), true);
   const evolution = useEvolutionChain(species?.getEvolutionID(), true);
 
   const searchRef = useRef();
@@ -121,7 +122,9 @@ export default function PokemonDetailsPage() {
         <Col sm={12} md={6} lg={3} className='detailsBodyCol'>
           <Row className='h-100'>
             {/* Pokemon Evolution */}
-            <Col sm={12} className='debug detailsBodyItem'>1</Col>
+            <Col sm={12} className='debug detailsBodyItem'>
+              <PokemonEvolutionDetails evolution={evolution} />
+            </Col>
 
             {/* Pokemon Location */}
             <Col sm={12} className='debug2 detailsBodyItem'>1</Col>
