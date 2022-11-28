@@ -9,6 +9,8 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import PokemonStats from '../views/PokemonDetails/PokemonStats';
 import PokemonEvolutionDetails from '../views/PokemonDetails/PokemonEvolutionDetails';
+import PokemonLocation from '../views/PokemonDetails/PokemonLocation';
+import PokemonTypeEffectiveness from '../views/PokemonDetails/PokemonTypeEffectiveness';
 import PokemonMoves from '../views/PokemonDetails/PokemonMoves';
 import PokemonTypeImage from "../views/typeImage/PokemonTypeImage";
 
@@ -90,8 +92,8 @@ export default function PokemonDetailsPage() {
 
       </nav>
       
-      <Row className='detailsBody'>
-        <Col sm={12} md={6} lg={3} className='detailsBodyCol'>
+      <Row className='detailsBody w-100'>
+        <Col sm={12} md={6} lg={4} xl={3} className='detailsBodyCol'>
           <Row className='detailsBodyRow'>
             
             {/* Pokemon Image */}
@@ -104,11 +106,11 @@ export default function PokemonDetailsPage() {
             </Col>
 
             {/* Pokemon Type and Name */}
-            <Col sm={6} className='detailsBodyItem p-1 pb-2'>
+            <Col sm={12} className='detailsBodyItem p-1 pb-2 container'>
               <div className='outlineContainer pokemonNumber px-3 py-0'>#{id}</div>
               <div className='outlineContainer text-capitalize pokemonName px-3 py-0'>{pokemon?.name}</div>
             </Col>
-            <Col sm={6} className='detailsBodyItem pb-2 p-1 justify-content-center'>
+            <Col sm={12} className='detailsBodyItem pb-2 p-1 justify-content-center container'>
               <PokemonTypeImage pokemon={pokemon} maxHeight='40px'/>
             </Col>
 
@@ -119,7 +121,7 @@ export default function PokemonDetailsPage() {
           </Row>
         </Col>
         
-        <Col sm={12} md={6} lg={3} className='detailsBodyCol'>
+        <Col sm={12} md={6} lg={4} xl={3} className='detailsBodyCol'>
           <Row className='detailsBodyRow'>
             {/* Pokemon Evolution */}
             <Col sm={12} className='detailsBodyItem p-1'>
@@ -127,20 +129,24 @@ export default function PokemonDetailsPage() {
             </Col>
 
             {/* Pokemon Location */}
-            <Col sm={12} className='debug2 detailsBodyItem'>1</Col>
+            <Col sm={12} className='detailsBodyItem p-1'>
+              <PokemonLocation pokemon={pokemon} evolution={evolution} />
+            </Col>
           </Row>
         </Col>
 
         {/* Pokemon Moves */}
-        <Col sm={12} md={6} lg={3} className='detailsBodyCol p-1'>
+        <Col sm={12} md={6} lg={4} xl={3} className='detailsBodyCol p-1'>
           <PokemonMoves pokemon={pokemon} className='detailsBodyItem' />
         </Col>
 
         
-        <Col sm={12} md={6} lg={3} className='detailsBodyCol'>
+        <Col sm={12} md={6} lg={4} xl={3} className='detailsBodyCol'>
           <Row className='detailsBodyRow'>
-            <Col sm={12} className='debug2 detailsBodyItem'>1</Col>
-            <Col sm={12} className='debug detailsBodyItem'></Col>
+            <Col sm={12} className='detailsBodyItem p-1'>
+              <PokemonTypeEffectiveness pokemon={pokemon} />
+            </Col>
+            {/* <Col sm={12} className='debug detailsBodyItem'></Col> */}
           </Row>
         </Col>
       </Row>
