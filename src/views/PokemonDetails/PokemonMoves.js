@@ -11,7 +11,7 @@ export default function PokemonMoves({pokemon}) {
   return (
     <div className='statsContainer container py-1'>
       <h5>Moves</h5>
-      <div className='movesList'>
+      <div className='movesList mb-2'>
         {
           moves != null ?
           moves.map((move, index) => {

@@ -62,7 +62,7 @@ export class EvolutionInfo{
 
     static from(json){
         const parsed = Object.assign(new EvolutionInfo(), json);
-        console.log(parsed);
+        // console.log(parsed);
         parsed.chain = EvolutionInfo.getEvolutionChain(parsed);
         return parsed;
     }

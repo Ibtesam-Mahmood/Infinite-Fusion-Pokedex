@@ -92,7 +92,7 @@ export default function PokemonDetailsPage() {
       
       <Row className='detailsBody'>
         <Col sm={12} md={6} lg={3} className='detailsBodyCol'>
-          <Row className='h-100'>
+          <Row className='detailsBodyRow'>
             
             {/* Pokemon Image */}
             <Col sm={12} className='detailsBodyItem px-5, pt-5 pb-2'>
@@ -108,7 +108,7 @@ export default function PokemonDetailsPage() {
               <div className='outlineContainer pokemonNumber px-3 py-0'>#{id}</div>
               <div className='outlineContainer text-capitalize pokemonName px-3 py-0'>{pokemon?.name}</div>
             </Col>
-            <Col sm={6} className='detailsBodyItem pb-2 p-1'>
+            <Col sm={6} className='detailsBodyItem pb-2 p-1 justify-content-center'>
               <PokemonTypeImage pokemon={pokemon} maxHeight='40px'/>
             </Col>
 
@@ -120,9 +120,9 @@ export default function PokemonDetailsPage() {
         </Col>
         
         <Col sm={12} md={6} lg={3} className='detailsBodyCol'>
-          <Row className='h-100'>
+          <Row className='detailsBodyRow'>
             {/* Pokemon Evolution */}
-            <Col sm={12} className='debug detailsBodyItem'>
+            <Col sm={12} className='detailsBodyItem p-1'>
               <PokemonEvolutionDetails evolution={evolution} />
             </Col>
 
@@ -132,13 +132,13 @@ export default function PokemonDetailsPage() {
         </Col>
 
         {/* Pokemon Moves */}
-        <Col sm={12} md={6} lg={3} className='detailsBodyCol p-1 d-flex'>
+        <Col sm={12} md={6} lg={3} className='detailsBodyCol p-1'>
           <PokemonMoves pokemon={pokemon} className='detailsBodyItem' />
         </Col>
 
         
         <Col sm={12} md={6} lg={3} className='detailsBodyCol'>
-          <Row className='h-100'>
+          <Row className='detailsBodyRow'>
             <Col sm={12} className='debug2 detailsBodyItem'>1</Col>
             <Col sm={12} className='debug detailsBodyItem'></Col>
           </Row>
