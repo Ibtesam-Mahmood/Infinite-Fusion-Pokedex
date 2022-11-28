@@ -38,7 +38,7 @@ export default function PokemonListPage() {
         <div className='pokemonHeaderContnet d-flex'>
           <div className='text-center container'>
             <h1>FusionDex</h1>
-            <h6>Created by <a href='https://github.com/Ibtesam-Mahmood'>Ibtesam-Mahmood</a> as a tool to use when playing Pokemon Infinite Fusion (v5.0). Hopefully it can be useful to you too.</h6>
+            <h6>Created by <a href='https://github.com/Ibtesam-Mahmood'>Ibtesam-Mahmood</a> as a tool to use when playing Pokemon Infinite Fusion (v5.0). The tool itself is based off of <a href='https://aegide.github.io'>The Infinite Fusion Calculator</a> Created by <a href='https://github.com/Aegide/Aegide.github.io'>Aegide/SDM0</a>. Hopefully it can be useful to you.</h6>
             
             {/* Search Box */}
             <div className='d-flex justify-content-center'>
