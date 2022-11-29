@@ -29,6 +29,21 @@ const typeNames = [
     'rock', 'steel', 'unknown', 'water'
 ];
 
+const typeIndecies = [
+    7, 17, 16,
+    13, 18, 2,
+    10, 3, 8,
+    12, 5, 15,
+    1, 4, 14,
+    6, 9, 10001, 11
+];
+
+const TypeIndeciesMap = new Map(
+    [...Array(typeNames.length).keys()].map(
+        i => [typeNames[i], typeIndecies[i]]
+    )
+);
+
 // All the images for the types
 const typeImages = [
     bugTypeImage, darkTypeImage, dragonTypeImage, 
@@ -54,6 +69,7 @@ const TypeEffectiveness = {
 
 export const TypeImages = TypeImagesMap;
 export const TypeNames = typeNames;
+export const TypeApiIndecies = TypeIndeciesMap;
 // export default {
 //     TypeNames: typeNames,
 //     TypeImages: TypeImagesMap

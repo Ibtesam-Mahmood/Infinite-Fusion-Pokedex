@@ -107,7 +107,7 @@ export default function PokemonDetailsPage() {
 
             {/* Pokemon Type and Name */}
             <Col sm={12} className='detailsBodyItem p-1 pb-2 container'>
-              <div className='outlineContainer pokemonNumber px-3 py-0'>#{id}</div>
+              <div className='outlineContainer pokemonNumber px-3 py-0'>#{pokemon?.getGameID()}</div>
               <div className='outlineContainer text-capitalize pokemonName px-3 py-0'>{pokemon?.name}</div>
             </Col>
             <Col sm={12} className='detailsBodyItem pb-2 p-1 justify-content-center container'>

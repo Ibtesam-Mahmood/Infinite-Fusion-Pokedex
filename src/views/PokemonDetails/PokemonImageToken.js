@@ -15,7 +15,7 @@ export default function PokemonImageToken({pokemon}) {
           <img className='img-fluid' src={pokemon?.sprites?.front_default} alt={pokemon?.name}/>
         </div>
         <div className='pokemonName pt-1'>
-          <h6 className='text-capitalize container p-0 m-0 pb-2'>{pokemon?.name}</h6>
+          <h6 className='text-capitalize container p-0 m-0 pb-2'>{pokemon.getGameID()}. {pokemon?.name}</h6>
           <PokemonTypeImage pokemon={pokemon} maxHeight='20px'/>
         </div>
       </div>

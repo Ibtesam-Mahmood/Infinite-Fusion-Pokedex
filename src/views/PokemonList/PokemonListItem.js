@@ -61,7 +61,7 @@ export default function PokemonListItem({ pokemonInfo }) {
           />
           <Card.Body className="p-0">
             <Row className='' style={{margin:"auto"}}>
-              <Col className='pokeNumberBox col-auto ps-2 pe-3 my-2'>No.{pokemonInfo.getID()}</Col>
+              <Col className='pokeNumberBox col-auto ps-2 pe-3 my-2'>No.{pokemonInfo.getGameID()}</Col>
               <Col className='my-auto d-flex p-0 px-2 justify-content-end'><PokemonTypeImage pokemon={pokemon}/></Col>
             </Row>
           </Card.Body>

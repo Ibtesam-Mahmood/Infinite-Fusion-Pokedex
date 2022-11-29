@@ -2,7 +2,7 @@
 
 .statsContainer{
     // max-height: 100vh;
-    min-height: 30vh;
+    min-height: 20vh;
     width: 100%;
     background-color: rgba($dark, 0.9);
     border-radius: 10px;
@@ -10,12 +10,36 @@
     color: $light;
 
     table{
-        width: auto;
+        width: 100%;
 
         // td, th{
         //     border: 1px solid #dddddd;
         // }
     }
+
+    .abilitiesTable{
+        font-weight: 600;
+        width: 100%;
+        margin: 0 auto;
+        border-collapse: separate;
+        // border: 2px solid $secondary;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        
+        td{
+            background-color: rgba($secondary, 0.5);
+            border-radius: 10px;
+            border: 1px solid $light;
+            padding: 8px;
+            text-align: center;
+            
+            &.hiddenAbility{
+                background-color: rgba($dark, 0.7);
+            }
+        }
+    }
+    
 }
 
 .movesList{
@@ -32,6 +56,10 @@
     border: 1px solid rgba($secondary, 0.7);
     border-radius: 10px;
     overflow: hidden;
+
+    tr:hover{
+        background-color: rgba($dark, 0.6);
+    }
 
     .pokemonName{
         background-color: rgba($secondary, 0.7);
@@ -52,6 +80,7 @@
             z-index: 10;
             transform: scale(1.2);
         }
+        
         // z-index: 10;
         // margin: auto;
         // &::before{
