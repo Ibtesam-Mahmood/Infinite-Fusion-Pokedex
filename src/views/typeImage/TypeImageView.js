@@ -9,8 +9,6 @@ export default function TypeImageView({typeOne, typeTwo = null, maxHeight = '20p
     // console.log(`(${typeOne}, ${typeTwo}) => [${imageOne}, ${imageTwo}]`);
 
     const imageStyle = {
-        width: "auto",
-        minHeight: "5px",
         maxHeight: maxHeight
     }
 

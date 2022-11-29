@@ -25,6 +25,9 @@ body {
 }
 
 .typeImage{
+    width: auto;
+    min-height: 5px;
+    max-height: 20px;
     padding: 0;
     background-color: transparent;
     border: none;

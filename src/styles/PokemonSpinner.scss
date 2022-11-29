@@ -39,7 +39,6 @@ $randomColor: nth($pokeballColors, random(length($pokeballColors)));
 }
 
 .pokemonLoadingSpinner{
-
     height: 100px;
     width: 100px;
     background: linear-gradient(to bottom, $randomColor 50%, white 50%);
