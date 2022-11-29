@@ -130,6 +130,7 @@ export class TypeEffectiveness{
         };
 
         for (let i = 0; i < effectiveness.length; i++) {
+            if(i == 17) continue; // skip unknown
             const value = effectiveness[i];
             const type = typeNames[i];
             if(value == 4){

@@ -29,12 +29,13 @@ export default function EffectivenessTable({sorted, list}) {
 
           const title = k.replace('_', '.');
           const types = effectiveness[k];
+          const modifier = parseInt(title.replace('x', ''));
           
           return (
             <tbody key={`effectivenessRow-${k}`}>
-              <tr className='py-2'>
+              <tr className={modifier > 1 ? 'superEffective' : modifier == 1 ? '' : 'notEffective'}>
                 <td className='effTitle px-2'>{title}</td>
-                <td className='effTypes'>{types.map(t => getTypeImg(t))}</td>
+                <td className='effTypes py-1'>{types.map(t => getTypeImg(t))}</td>
               </tr>
             </tbody>
           )

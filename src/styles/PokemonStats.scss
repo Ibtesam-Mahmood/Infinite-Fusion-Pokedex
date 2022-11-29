@@ -56,6 +56,13 @@
             border: 1px solid $light;
             padding: 8px;
             text-align: center;
+
+            &.superEffective{
+                background-color: rgba($success, 0.5);
+            }
+            &.notEffective{
+                background-color: rgba($danger, 0.5);
+            }
         }
         td{
             &.effTitle{
