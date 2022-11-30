@@ -459,6 +459,7 @@ while(lineIndex < lines.length){
                 pokemonLocationMap[pokemonID].push({
                     location: name,
                     mapID: mapID,
+                    method: title.replace('\r', ''),
                     minLevel: parseInt(pokeInfo[1]),
                     maxLevel: parseInt(pokeInfo[2]),
                     chance: parseFloat(pokeInfo[3]),

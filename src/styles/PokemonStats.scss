@@ -28,6 +28,35 @@
         // }
     }
 
+    .locationsTable{
+        overflow: hidden;
+        width: 100%;
+        border: 1px solid $dark;
+        border-radius: 10px;
+        background-color: rgba($light, 0.87);
+        color: $dark;
+        padding: 10px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+
+        td, th{
+            min-width: 40px;
+            border: 1px solid $dark;
+            padding: 5px;
+            text-align: center;
+
+        }
+
+        .locationName{
+            font-weight: bold;
+            text-align: right;
+        }
+
+        .locationMethod{
+            font-style: italic;
+        }
+    }
+
     .abilitiesTable{
         font-weight: 600;
         width: 100%;
