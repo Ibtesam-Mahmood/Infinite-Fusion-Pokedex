@@ -7,11 +7,21 @@ import PokemonMoveListItem from './PokemonMoveListItem';
 
 export default function PokemonMoves({pokemon}) {
 
-  const moves = pokemon != null ? pokemon.moves : [];
-  const moveIds = moves.map(move => move.move.url.split('/').reverse()[1]);
+  let moves = pokemon != null ? pokemon.moves : [];
 
+  //Filters any moves that are not learnt by level up or egg and then sorts them by level
+  moves = moves.filter((move) => {
+    const learnMethod = move.details.move_learn_method.name;
+    return learnMethod === 'egg' || learnMethod === 'level-up';
+  });
+  moves.sort((a, b) => { return a.details.level_learned_at - b.details.level_learned_at; });
+
+  const moveIds = moves.map(getMoveInfoID);
+  
   const [movesMap, movesLoaded] = useMoves(moveIds, true);
-  // console.log(movesMap);
+  // console.log(moves);
+
+  function getMoveInfoID(move) { return move.move.url.split('/').reverse()[1]; }
 
   return (
     <div className='statsContainer container py-1'>
@@ -19,15 +29,32 @@ export default function PokemonMoves({pokemon}) {
       {
         !movesLoaded ? <PokemonSpinner scale={0.5} /> : 
         <div className='movesList mb-2'>
-          {
-            moves != null ?
-            moves.map((move, index) => {
-              return (
-                <PokemonMoveListItem key={index} moveInfo={move} />
-              )
-            })
-            : null
-          }
+          <table>
+            <thead>
+              <tr>
+                <th>Level</th>
+                <th>Move</th>
+                <th>Type</th>
+                <th>Cat</th>
+                <th>Pwr.</th>
+                <th>Acc.</th>
+                <th>PP.</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                moves.map((pokemonMove, index) => {
+                  return (
+                    <PokemonMoveListItem 
+                      key={`pokemonMove-${index}`} 
+                      move={pokemonMove} 
+                      moveInfo={movesMap[getMoveInfoID(pokemonMove)]} 
+                    />
+                  )
+                })
+              }
+            </tbody>
+          </table>
         </div>
       }
     </div>

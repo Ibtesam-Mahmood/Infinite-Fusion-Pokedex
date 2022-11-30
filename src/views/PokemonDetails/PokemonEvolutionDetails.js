@@ -14,7 +14,7 @@ export default function PokemonEvolutionDetails({evolution}) {
   return (
     <div className='statsContainer container py-1'>
       <h5>Evolution Chain</h5>
-      <table>
+      <table className='evolutionContainer'>
         {
           speciesIDs != null ?
           evolution.chain.map((e, i) => {
@@ -49,7 +49,7 @@ export default function PokemonEvolutionDetails({evolution}) {
                 </tr> : null}
               </tbody>
             )
-          }) : <PokemonSpinner scale={0.5}/>
+          }) : <tbody><tr><td><PokemonSpinner scale={0.5}/></td></tr></tbody>
         }
       </table>
     </div>

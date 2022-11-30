@@ -3,9 +3,15 @@ import {TypeApiIndecies} from '../services/constants'
 
 export class PokemonInfo{
 
-    constructor(){}
+    constructor(){
+        this.objectType = 'PokemonInfo';
+    }
 
     static from(json){
+        if(json.objectType === 'PokemonInfo'){
+            return json;
+        }
+
         const parsed = Object.assign(new PokemonInfo(), json);
         parsed.id = parseInt(parsed.url.split('/').reverse()[1]);
 
@@ -32,9 +38,15 @@ export class PokemonInfo{
 
 export class Pokemon{
 
-    constructor(){}
+    constructor(){
+        this.objectType = 'Pokemon';
+    }
 
     static from(json){
+        if(json.objectType === 'Pokemon'){
+            return json;
+        }
+
         const parsed = Object.assign(new Pokemon(), json);
         
         if(infiniteFusionConstants.nameFix[parsed.name] != null){
@@ -155,9 +167,15 @@ export class Pokemon{
 }
 
 export class PokemonSpecies{
-    constructor(){}
+    constructor(){
+        this.objectType = 'PokemonSpecies';
+    }
 
     static from(json){
+        if(json.objectType === 'PokemonSpecies'){
+            return json;
+        }
+
         const parsed = Object.assign(new PokemonSpecies(), json);
         // console.log(parsed);
 
@@ -195,9 +213,15 @@ export class PokemonSpecies{
 }
 
 export class EvolutionInfo{
-    constructor(){}
+    constructor(){
+        this.objectType = 'EvolutionInfo';
+    }
 
     static from(json){
+        if(json.objectType === 'EvolutionInfo'){
+            return json;
+        }
+
         const parsed = Object.assign(new EvolutionInfo(), json);
         // console.log(parsed);
         parsed.chain = EvolutionInfo.getEvolutionChain(parsed);
@@ -241,12 +265,19 @@ export class EvolutionInfo{
 }
 
 export class MoveInfo{
-    constructor(){}
+    constructor(){
+        this.objectType = 'MoveInfo';
+    }
 
     static from(json){
+        if(json.objectType === 'MoveInfo'){
+            return json;
+        }
+
         const parsed = new MoveInfo();
         
         parsed.id = json.id;
+        parsed.name = json.name;
         parsed.accuracy = json.accuracy;
         parsed.priority = json.priority;
         parsed.power = json.power;
@@ -264,22 +295,20 @@ export class MoveInfo{
 }
 
 export class AbilityInfo{
-    constructor(){}
+    constructor(){
+        this.objectType = 'AbilityInfo';
+    }
 
     static from(json){
-        const parsed = new MoveInfo();
+        if(json.objectType === 'AbilityInfo'){
+            return json;
+        }
+
+        const parsed = new AbilityInfo();
         
         parsed.id = json.id;
-        parsed.accuracy = json.accuracy;
-        parsed.priority = json.priority;
-        parsed.power = json.power;
-        parsed.pp = json.pp;
-        parsed.stat_changes = json.stat_changes;
-        parsed.target = json.target;
-        parsed.type = json.type;
-        parsed.damage_class = json.damage_class;
-        parsed.meta = json.meta;
-        parsed.description = json.flavor_text_entries.filter(e => e.language.name === 'en').reverse()[0].flavor_text;
+        parsed.name = json.name;
+        parsed.description = json.effect_entries.filter(e => e.language.name === 'en').reverse()[0].effect;
 
         return parsed;
     }
