@@ -6,7 +6,7 @@ import PokemonMoveListItem from './PokemonMoveListItem';
 export default function PokemonMoves({pokemon}) {
 
   const moves = pokemon != null ? pokemon.moves : null;
-  // console.log(moves);
+  console.log(moves);
 
   return (
     <div className='statsContainer container py-1'>

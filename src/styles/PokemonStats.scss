@@ -8,6 +8,17 @@
     border-radius: 10px;
     border: 5px solid $dark;
     color: $light;
+    
+    .descriptionText{
+        border-radius: 10px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        border: 2px solid $dark;
+        background-color: rgba($light, 0.87);
+        padding: 10px;
+        color: $dark;
+    }
 
     table{
         width: 100%;
