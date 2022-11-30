@@ -1,5 +1,6 @@
 import infiniteFusionConstants from "../services/infiniteFusionConstants";
 import {TypeApiIndecies} from '../services/constants'
+// import {EncounterLocations} from '../scripts/encounterLocations'
 
 export class PokemonInfo{
 

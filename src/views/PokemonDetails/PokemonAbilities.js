@@ -10,7 +10,7 @@ export default function PokemonAbilities({pokemon}) {
   const hovered = useHover(hoverRef);
 
   let abilities = pokemon != null ? pokemon.abilities : [];
-  console.log(abilities);
+  // console.log(abilities);
   const abilityIds = abilities.map(getAbilityID);
   
   const [abilitiesMap, loaded] = useAbilities(abilityIds, true);
