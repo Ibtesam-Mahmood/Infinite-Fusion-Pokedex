@@ -2,7 +2,6 @@ import React from 'react'
 
 import '../../styles/PokemonStats.scss';
 import StatProgressBar from './StatProgressBar';
-import PokemonAbilities from './PokemonAbilities';
 
 export default function PokemonStats({pokemon}) {
 
@@ -26,10 +25,6 @@ export default function PokemonStats({pokemon}) {
 
   return (
     <div className='statsContainer container py-1'>
-      <div className='pb-3'>
-        <h5>Abilities</h5>
-        <PokemonAbilities pokemon={pokemon} />
-      </div>
       <div>
         <h5>Base stats</h5>
         <StatProgressBar value={statMap.hp} title='HP' />

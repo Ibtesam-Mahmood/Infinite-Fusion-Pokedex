@@ -115,30 +115,31 @@ export default function PokemonDetailsPage() {
               <PokemonTypeImage pokemon={pokemon} maxHeight='40px'/>
             </Col>
 
-            {/* Pokemon Description */}
+            
+            {/* Pokemon Stats */}
             <Col sm={12} className='detailsBodyItem p-1'>
-              <PokemonDescription species={species} />
+              <PokemonStats pokemon={pokemon} />
             </Col>
           </Row>
         </Col>
         
         <Col sm={12} md={6} lg={4} xl={3} className='detailsBodyCol'>
           <Row className='detailsBodyRow'>
-            {/* Pokemon Stats */}
+            {/* Pokemon Description */}
             <Col sm={12} className='detailsBodyItem p-1'>
-              <PokemonStats pokemon={pokemon} />
+              <PokemonDescription pokemon={pokemon} species={species} />
             </Col>
 
-            {/* Pokemon Evolution */}
+            {/* Pokemon Moves */}
             <Col sm={12} className='detailsBodyItem p-1'>
-              <PokemonEvolutionDetails evolution={evolution} />
+              <PokemonMoves pokemon={pokemon} />
             </Col>
           </Row>
         </Col>
 
-        {/* Pokemon Moves */}
+        {/* Pokemon Evolution*/}
         <Col sm={12} md={6} lg={4} xl={3} className='detailsBodyCol p-1'>
-          <PokemonMoves pokemon={pokemon} className='detailsBodyItem' />
+            <PokemonEvolutionDetails className='detailsBodyItem'  evolution={evolution} />
         </Col>
 
         
