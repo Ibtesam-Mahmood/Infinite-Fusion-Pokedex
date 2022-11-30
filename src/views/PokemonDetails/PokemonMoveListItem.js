@@ -9,9 +9,9 @@ export default function PokemonMoveListItem({moveInfo, move}) {
   return (
     <tr className='moveItem'>
       <td className='moveMethod'>{eggLearnMethod ? 'egg' : move.details.level_learned_at}</td>
-      <td className='moveName'>{moveInfo.name}</td>
-      <td className={`typeBackground-${type}`}>{type}</td>
-      <td className='moveCategory'>{damageClass}</td>
+      <td className='moveName ps-1'>{moveInfo.name}</td>
+      <td className={`typeBackground-${type} text-capitalize`}>{type}</td>
+      <td className={`moveCategory ${damageClass}`}>{damageClass}</td>
       <td>{moveInfo.power ?? '-'}</td>
       <td>{moveInfo.accuracy ?? '-'}%</td>
       <td>{moveInfo.pp ?? '-'}</td>
