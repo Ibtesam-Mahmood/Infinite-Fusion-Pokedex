@@ -2,11 +2,11 @@ import React from 'react'
 
 import '../../styles/PokemonStats.scss';
 import StatProgressBar from './StatProgressBar';
+import PokemonAbilities from './PokemonAbilities';
 
 export default function PokemonStats({pokemon}) {
 
   const stats = pokemon != null ? pokemon.stats : null;
-  const abilities = pokemon != null ? pokemon.abilities : [];
   const statMap = {
     hp: 0,
     attack: 0,
@@ -28,25 +28,7 @@ export default function PokemonStats({pokemon}) {
     <div className='statsContainer container py-1'>
       <div className='pb-3'>
         <h5>Abilities</h5>
-        <table className='abilitiesTable'>
-          <tbody>
-            <tr>
-            {
-              abilities.map(ability => {
-                return (
-                    <td 
-                      key={ability.ability.name} 
-                      className={`text-capitalize ${ability.is_hidden ? 'hiddenAbility' : ''}`}
-                    >
-                      {ability.ability.name}
-                    </td>
-                  )
-                }
-              )
-            }
-            </tr>
-          </tbody>
-        </table>
+        <PokemonAbilities pokemon={pokemon} />
       </div>
       <div>
         <h5>Base stats</h5>

@@ -44,9 +44,31 @@
             border: 1px solid $light;
             padding: 8px;
             text-align: center;
+
+            .abilityDescription{
+                font-size: small;
+                font-weight: normal;
+                color: rgba($light, 0.7);
+                line-height: normal;
+            }
             
             &.hiddenAbility{
-                background-color: rgba($dark, 0.7);
+                background-color: rgba($dark, 0.5);
+
+                &:hover{
+                    background-color: rgba($dark, 0.7);
+                }
+
+                .hiddenLabel{
+                    color: rgba($secondary, 0.65);
+                    font-weight: 600;
+                    position: absolute;
+                    font-size: smaller;
+                }
+            }
+
+            &:hover{
+                background-color: rgba($secondary, 0.7);
             }
         }
     }
