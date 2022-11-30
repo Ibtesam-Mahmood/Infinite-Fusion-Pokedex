@@ -2,6 +2,7 @@ import React from 'react';
 import {usePokemonBySpecies} from '../../services/hook';
 import PokemonImageToken from './PokemonImageToken';
 import PokemonEvolutionDetailsArrow from './PokemonEvolutionDetailsArrow';
+import PokemonSpinner from '../PokemonSpinner';
 
 import '../../styles/PokemonStats.scss';
 
@@ -48,7 +49,7 @@ export default function PokemonEvolutionDetails({evolution}) {
                 </tr> : null}
               </tbody>
             )
-          }) : null
+          }) : <PokemonSpinner scale={0.5}/>
         }
       </table>
     </div>

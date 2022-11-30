@@ -41,6 +41,7 @@ export class Pokemon{
             parsed.name = infiniteFusionConstants.nameFix[parsed.name];
         }
 
+        parsed.moves = Pokemon.getFixedMoves(parsed);
         parsed.stats = Pokemon.getFixedStats(parsed);
         parsed.types = Pokemon.getFixedTypes(parsed);
         parsed.abilities = Pokemon.getFixedAbilities(parsed);
@@ -110,6 +111,27 @@ export class Pokemon{
         return abilities;
     }
 
+    static getFixedMoves(pokemon){
+        const newMovesList = [];
+
+        pokemon.moves.forEach(move => {
+            
+            for (let i = move.version_group_details.length - 1; i >= 0; i--) {
+                const details = move.version_group_details[i];
+                if(details.version_group.name === 'ultra-sun-ultra-moon' || details.version_group.name === 'sun-moon'){
+                    newMovesList.push({
+                        move: move.move,
+                        details: details
+                    });
+                    break;
+                }
+            }
+
+        });
+        // console.log(newMovesList);
+        return newMovesList;
+    }
+
     getGameID(){
         return infiniteFusionConstants.gameIDRemap[this.id] ?? 'NA';
     }
@@ -138,8 +160,21 @@ export class PokemonSpecies{
     static from(json){
         const parsed = Object.assign(new PokemonSpecies(), json);
         // console.log(parsed);
+
+        parsed.description = PokemonSpecies.getDescription(parsed);
         
         return parsed;
+    }
+    
+    static getDescription(species){
+        const enteries = species.flavor_text_entries;
+        for (let index = enteries.length - 1; index >= 0; index--) {
+            const flavor = enteries[index];
+            if(flavor.language.name === 'en'){
+                return flavor.flavor_text;
+            }
+        }
+        return '';
     }
 
     getEvolutionID(){
@@ -203,4 +238,50 @@ export class EvolutionInfo{
         });
         return ids;
     }
+}
+
+export class MoveInfo{
+    constructor(){}
+
+    static from(json){
+        const parsed = new MoveInfo();
+        
+        parsed.id = json.id;
+        parsed.accuracy = json.accuracy;
+        parsed.priority = json.priority;
+        parsed.power = json.power;
+        parsed.pp = json.pp;
+        parsed.stat_changes = json.stat_changes;
+        parsed.target = json.target;
+        parsed.type = json.type;
+        parsed.damage_class = json.damage_class;
+        parsed.meta = json.meta;
+        parsed.description = json.flavor_text_entries.filter(e => e.language.name === 'en').reverse()[0].flavor_text;
+
+        return parsed;
+    }
+
+}
+
+export class AbilityInfo{
+    constructor(){}
+
+    static from(json){
+        const parsed = new MoveInfo();
+        
+        parsed.id = json.id;
+        parsed.accuracy = json.accuracy;
+        parsed.priority = json.priority;
+        parsed.power = json.power;
+        parsed.pp = json.pp;
+        parsed.stat_changes = json.stat_changes;
+        parsed.target = json.target;
+        parsed.type = json.type;
+        parsed.damage_class = json.damage_class;
+        parsed.meta = json.meta;
+        parsed.description = json.flavor_text_entries.filter(e => e.language.name === 'en').reverse()[0].flavor_text;
+
+        return parsed;
+    }
+
 }
