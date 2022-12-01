@@ -26,16 +26,27 @@ export default function AppNavbar({title, showSearch = true, active}) {
     }
   }
 
+  function randomPokemonUrl() {
+    const randomID = pokemonIDs[Math.floor(Math.random() * pokemonIDs.length)];
+    return `/poke-fusion-dex/pokemon/${randomID}`;
+  }
+
+  function randomFusionUrl() {
+    const randomID1 = pokemonIDs[Math.floor(Math.random() * pokemonIDs.length)];
+    const randomID2 = pokemonIDs[Math.floor(Math.random() * pokemonIDs.length)];
+    return `/poke-fusion-dex/fuse?idOne=${randomID1}&idTwo=${randomID2}&fuse=true`;
+  }
+
   const navItems = {
     'Home': () => '/poke-fusion-dex',
     'Fuse': () => '/poke-fusion-dex/fuse',
-    'Random Pokemon': () => {
-      if(pokemonIDs.length > 0){
-        const randomID = pokemonIDs[Math.floor(Math.random() * pokemonIDs.length)];
-        return `/poke-fusion-dex/pokemon/${randomID}`;
-      }
-      return '#';
-    },
+    // 'Random Pokemon': () => {
+    //   if(pokemonIDs.length > 0){
+    //     const randomID = pokemonIDs[Math.floor(Math.random() * pokemonIDs.length)];
+    //     return `/poke-fusion-dex/pokemon/${randomID}`;
+    //   }
+    //   return '#';
+    // },
     // 'About': () => '/poke-fusion-dex/about',
   };
 
@@ -63,6 +74,15 @@ export default function AppNavbar({title, showSearch = true, active}) {
               )
             })
           }
+          <li className="nav-item dropdown px-2">
+            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Randomize
+            </a>
+            <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a className="dropdown-item" href={randomPokemonUrl()}>Random Pokemon</a>
+              <a className="dropdown-item" href={randomFusionUrl()}>Random Fusion</a>
+            </div>
+          </li>
         </ul>
         
         {/* Search */}

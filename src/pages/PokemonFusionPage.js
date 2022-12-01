@@ -16,11 +16,16 @@ export default function PokemonFusionPage() {
 
   const pokemon1Param = parseInt(searchParams.get("idOne"));
   const pokemon2Param = parseInt(searchParams.get("idTwo"));
+  const autoFuse = searchParams.get("fuse");
 
   const pokemon1 = pokemon1Param ? parseInt(pokemon1Param) : null;
   const pokemon2 = pokemon2Param ? parseInt(pokemon2Param) : null;
 
   const canFuse = pokemon1 != null && pokemon2 != null;
+
+  if(autoFuse && canFuse && fuseID1 != pokemon1 && fuseID2 != pokemon2){
+    setFusionIDs();
+  }
 
   function setFusionIDs(){
     setFuseState([pokemon1, pokemon2]);
