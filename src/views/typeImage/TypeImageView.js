@@ -13,9 +13,15 @@ export default function TypeImageView({typeOne, typeTwo = null, maxHeight = '20p
     }
 
     return (
-        <div className='p-0 m-0 d-inline-flex flex-row' style={{minWidth: 10}}>
-            <img className='pe-1 typeImage img-fluid' src={imageOne} style={imageStyle} />
-            {imageTwo != null ? <img src={imageTwo} className='typeImage img-fluid' style={imageStyle} /> : null}
+        <div className='p-0 m-0 d-inline-flex flex-row' style={{minWidth: 35}}>
+            <div className='col pe-1'>
+                <img className='typeImage img-fluid' src={imageOne} style={imageStyle} />
+            </div>
+            {imageTwo != null ? 
+            <div className='col col-6'>
+                <img src={imageTwo} className='typeImage img-fluid' style={imageStyle} />
+            </div> 
+            : null}
         </div>
     )
 }

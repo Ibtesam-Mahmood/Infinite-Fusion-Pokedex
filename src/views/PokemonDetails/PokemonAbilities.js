@@ -4,7 +4,7 @@ import { useAbilities } from '../../services/hook';
 
 import '../../styles/PokemonStats.scss';
 
-export default function PokemonAbilities({pokemon}) {
+export default function PokemonAbilities({pokemon , variant = false}) {
 
   const hoverRef = useRef(null);
   const hovered = useHover(hoverRef);
@@ -18,7 +18,7 @@ export default function PokemonAbilities({pokemon}) {
   function getAbilityID(ability) { return ability.ability.url.split('/').reverse()[1]; }
 
   return (
-    <table className='abilitiesTable'>
+    <table className={`abilitiesTable`}>
       <tbody>
         <tr ref={hoverRef}>
         {
@@ -30,7 +30,7 @@ export default function PokemonAbilities({pokemon}) {
             return (
                 <td 
                   key={ability.ability.name} 
-                  className={`text-capitalize ${hidden ? 'hiddenAbility' : ''}`}
+                  className={`text-capitalize ${hidden ? 'hiddenAbility' : ''} ${variant ? 'variantContainer' : ''}`}
                 >
                   {hidden && !(hovered && loaded) ? <p className='hiddenLabel p-0 m-0'>Hidden</p> : null}
                   <h6 style={{display: hovered && loaded ? 'none' : 'block'}} className='p-0 m-0'>{ability.ability.name}</h6>

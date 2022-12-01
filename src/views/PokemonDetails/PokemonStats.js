@@ -3,7 +3,7 @@ import React from 'react'
 import '../../styles/PokemonStats.scss';
 import StatProgressBar from './StatProgressBar';
 
-export default function PokemonStats({pokemon}) {
+export default function PokemonStats({pokemon, variant = false}) {
 
   const stats = pokemon != null ? pokemon.stats : null;
   const statMap = {
@@ -24,7 +24,7 @@ export default function PokemonStats({pokemon}) {
   }
 
   return (
-    <div className='statsContainer container py-1'>
+    <div className={`statsContainer ${variant ? 'variantContainer' : ''} container py-1`}>
       <div>
         <h5>Base stats</h5>
         <StatProgressBar value={statMap.hp} title='HP' />

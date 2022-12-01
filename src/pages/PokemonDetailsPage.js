@@ -5,15 +5,13 @@ import loadPokemonThunkAction from '../state/InfinitePokedexStore/thunk/loadPoke
 import {Row, Col} from 'react-bootstrap';
 import SiteLogo from "../views/SiteLogo";
 import {useLoadPokemon, useEvolutionChain, useSpecies} from '../services/hook';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import PokemonStats from '../views/PokemonDetails/PokemonStats';
 import PokemonDescription from '../views/PokemonDetails/PokemonDescription';
 import PokemonEvolutionDetails from '../views/PokemonDetails/PokemonEvolutionDetails';
 import PokemonLocation from '../views/PokemonDetails/PokemonLocation';
 import PokemonTypeEffectiveness from '../views/PokemonDetails/PokemonTypeEffectiveness';
 import PokemonMoves from '../views/PokemonDetails/PokemonMoves';
-import PokemonTypeImage from "../views/typeImage/PokemonTypeImage";
+import PokemonTypeImage from "../views/TypeImage/PokemonTypeImage";
 import AppNavbar from "../views/AppNavbar";
 
 import '../styles/PokemonDetails.scss';

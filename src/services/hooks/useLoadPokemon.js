@@ -14,7 +14,7 @@ const useLoadPokemonHook = (id) => {
         if(pokemon == null){
             dispatch(PokemonStoreAction.thunk.loadPokemonByID({id: id}));
         }
-    }, []);
+    }, [id]);
 
     // console.log(pokemon);
 
