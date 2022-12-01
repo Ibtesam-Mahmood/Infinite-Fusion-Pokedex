@@ -29,7 +29,60 @@
     }
     .fusionPageFuse{
         min-height: 100vh;
-        
+        position: relative;
+        overflow: hidden;
+    }
+
+    .fuseFloating{
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &::before{
+            position: absolute;
+            height: 5px;
+            width: 100%;
+            border-radius: 10%;
+            background: rgba($light, 0.3);
+            top: 50%;
+            left: 0;
+            margin: 0;
+            padding: 0;
+            content: '';
+            z-index: -1;
+        }
+        .btn{
+            position: relative;
+            width: 30%;
+            z-index: 1;
+            border-width: 5px;
+            transition: 0.3s ease-in-out;
+            background-color: $dark;
+            color: $warning;
+            box-shadow: 0px 3px 10px 5px rgba($light, 0.5);
+            
+            &:disabled{
+                box-shadow: none;
+                color: rgba($dark, 0.6);
+                border-width: 3px;
+                opacity: 1.0;
+                border-color: $dark;
+                background-color: $secondary;
+            }
+            
+            &:hover{
+                box-shadow: 0px 3px 12px 10px rgba($warning, 0.5);
+                color: $dark;
+                // border-color: $dark;
+                background-color: $warning;
+            }
+        }
     }
     // .detailsBodyRow{
     //     // height: 100vh;

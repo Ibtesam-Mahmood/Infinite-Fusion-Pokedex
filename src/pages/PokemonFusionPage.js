@@ -1,11 +1,15 @@
 import React, {useState} from 'react'
 import AppNavbar from "../views/AppNavbar";
 import PokemonSelector from '../views/PokemonFusion/PokemonSelector';
+import PokemonFuser from '../views/PokemonFusion/PokemonFuser';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 
 import '../styles/PokemonFusion.scss';
 
 export default function PokemonFusionPage() {
+
+  const [fuseState, setFuseState] = useState([null, null]);
+  const [fuseID1, fuseID2] = fuseState;
 
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -15,6 +19,12 @@ export default function PokemonFusionPage() {
 
   const pokemon1 = pokemon1Param ? parseInt(pokemon1Param) : null;
   const pokemon2 = pokemon2Param ? parseInt(pokemon2Param) : null;
+
+  const canFuse = pokemon1 != null && pokemon2 != null;
+
+  function setFusionIDs(){
+    setFuseState([pokemon1, pokemon2]);
+  }
 
   function setPokemonID(id, index){
     const id1 = index === 1 ? id : pokemon1;
@@ -43,14 +53,32 @@ export default function PokemonFusionPage() {
             <div className='fusionPageItem col col-12 p-1'>
               <PokemonSelector selected={pokemon1} onSelect={(id) => setPokemonID(id, 1)}/> 
             </div>
-            <div className='fusionPageItem col col-12'>
+            <div className='fusionPageItem col col-12 p-1'>
               <PokemonSelector selected={pokemon2} onSelect={(id) => setPokemonID(id, 2)}/> 
             </div>
           </div>
         </div>
-        <div className='fusionPageCol col col-12 col-md-8'>
+        <div className='fusionPageCol col col-12 col-md-8  p-0'>
           <div className='fusionPageFuse'>
-            3
+            <div className='row m-0'>
+              <div className='fusionPageItem col col-12 p-1 '>
+                <PokemonFuser fuse1={fuseID1} fuse2={fuseID2}/> 
+              </div>
+              <div className='fusionPageItem col col-12 p-1 '>
+                <PokemonFuser fuse1={fuseID2} fuse2={fuseID1}/> 
+              </div>
+            </div>
+            <div className='fuseFloating'>
+              <button 
+                disabled={!canFuse} 
+                onClick={setFusionIDs}
+                type="button" className="btn btn-warning btn-lg"
+              >
+                <h3 className='p-0 m-0 font-weight-bold font-italic'>
+                  Fuse
+                </h3>
+              </button>
+            </div>
           </div>
         </div>
       </div>
