@@ -19,7 +19,7 @@ export default function ToastyWrapper({children}) {
   const toastRef = useRef();
 
   useEffect(() => {
-    console.log('runninggggggg');
+    // console.log('runninggggggg');
       var myToast = toastRef.current
       var bsToast = Toast.getInstance(myToast)
       

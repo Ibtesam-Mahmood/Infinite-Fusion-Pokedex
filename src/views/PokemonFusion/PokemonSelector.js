@@ -10,9 +10,7 @@ export default function PokemonSelector({selected, onSelect}) {
 
   function handleSelect(id) {
     handleFind(false);
-    if(id != null){
-      onSelect(id);
-    }
+    onSelect(id);
   }
 
   function handleFind(value) {

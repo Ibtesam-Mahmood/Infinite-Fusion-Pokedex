@@ -25,14 +25,14 @@ export default function PokemonStats({pokemon, variant = false}) {
 
   return (
     <div className={`statsContainer ${variant ? 'variantContainer' : ''} container py-1`}>
-      <div>
-        <h5>Base stats</h5>
-        <StatProgressBar value={statMap.hp} title='HP' />
-        <StatProgressBar value={statMap.attack} title='Attack' />
-        <StatProgressBar value={statMap.defense} title='Defense' />
-        <StatProgressBar value={statMap['special-attack']} title='Sp. Attack' />
-        <StatProgressBar value={statMap['special-defense']} title='Sp. Defense' />
-        <StatProgressBar value={statMap.speed} title='Speed' />
+      <div className='row'>
+        <h5 className='col col-12'>Base stats</h5>
+        <StatProgressBar className='col col-12' value={statMap.hp} title='HP' color={'warning'}/>
+        <StatProgressBar className='col col-12' value={statMap.attack} title='Attack' color={'danger'}/>
+        <StatProgressBar className='col col-12' value={statMap.defense} title='Defense' color={'success'}/>
+        <StatProgressBar className='col col-12' value={statMap['special-attack']} title='Sp. Atk' color={'primary'}/>
+        <StatProgressBar className='col col-12' value={statMap['special-defense']} title='Sp. Def' color={'secondary'}/>
+        <StatProgressBar className='col col-12' value={statMap.speed} title='Speed' color={'info'}/>
       </div>
     </div>
   )
