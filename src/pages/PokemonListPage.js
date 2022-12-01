@@ -40,7 +40,7 @@ export default function PokemonListPage() {
   };
 
   return (
-    <>
+    <div className='homeRoot'>
 
       <AppNavbar showSearch={showSearch} active={'home'} />
 
@@ -77,6 +77,6 @@ export default function PokemonListPage() {
           /> 
           : null
       }
-    </>
+    </div>
   )
 }

@@ -16,12 +16,24 @@ body {
   background-color: blue;
 }
 
+.debug3 {
+  background-color: green;
+}
+
 .blur {
   filter: blur(10px);
 }
 
 .darkenItem {
   filter: saturate(50%);
+}
+
+// .homeRoot{
+
+// }
+
+.pagedPokemonListRoot{
+  background-color: rgba($dark, 0.85);
 }
 
 .typeImage{
@@ -48,7 +60,12 @@ body {
 
 .pokemonCard{
     min-width: 170px;
+    overflow: hidden;
     // cursor: pointer;
+    
+    &.mini{
+      min-width: 90px;
+    }
 }
 
 .pokeNumberBox{
@@ -79,9 +96,10 @@ body {
       padding: 0;
       margin: 0;
       top: 0;
+      left: 0;
+      right: 0;
       height: 70px;
       position: absolute;
-      width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;

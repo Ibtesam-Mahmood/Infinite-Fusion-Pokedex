@@ -11,7 +11,7 @@ export default function AppNavbar({title, showSearch = true, active}) {
   const navigate = useNavigate();
 
   const pokemonIDs = useSelector(state => state.pokemonInfo.map(p => p.getID()));
-  console.log(pokemonIDs);
+  // console.log(pokemonIDs);
   
   function handleKeyDown(e) {
     if (e.key === 'Enter') {

@@ -8,7 +8,7 @@ import PokemonTypeImage from "../typeImage/PokemonTypeImage";
 
 import '../../styles/TypeStyles.scss';
 
-export default function PokemonListItem({ pokemonInfo }) {
+export default function PokemonListItem({ pokemonInfo, mini = false }) {
 
   const id = parseInt(pokemonInfo.getID());
   const pokemon = usePokemon(id);
@@ -30,8 +30,10 @@ export default function PokemonListItem({ pokemonInfo }) {
 
   }
 
+  const miniClass = mini ? 'mini' : '';
+
   return (
-    <div className='pokemonCard'>
+    <div className={`pokemonCard ${miniClass}`}>
       <Link to={`/poke-fusion-dex/pokemon/${pokemonInfo.getID()}`} style={{ textDecoration: 'none' }}>
         <Card
           bg='dark'
@@ -40,12 +42,12 @@ export default function PokemonListItem({ pokemonInfo }) {
           ref={hoverRef}
         > 
           <Card.Header className="p-0">
-            <Card.Title className="mx-2 my-1 text-center">{capatalize(pokemonInfo.name)}</Card.Title>
+            <Card.Title className={`mx-2 my-1 text-center text-truncate ${mini ? 'h6' : ''}`}>{capatalize(pokemonInfo.name)}</Card.Title>
           </Card.Header>
           <div>
             <Card.Img 
               variant='top' 
-              className={`${getClassNameByPokemonType()} pokemonImage img-fluid`} 
+              className={`${getClassNameByPokemonType()} pokemonImage img-fluid ${miniClass}`} 
               loading="lazy"
               src={spriteImg}
             />
@@ -61,8 +63,10 @@ export default function PokemonListItem({ pokemonInfo }) {
           />
           <Card.Body className="p-0">
             <Row className='' style={{margin:"auto"}}>
-              <Col className='pokeNumberBox col-auto ps-2 pe-3 my-2'>No.{pokemonInfo.getGameID()}</Col>
-              <Col className='my-auto d-flex p-0 px-2 justify-content-end'><PokemonTypeImage pokemon={pokemon}/></Col>
+              {mini ? null : <Col className='pokeNumberBox col-auto ps-2 pe-3 my-2'>No.{pokemonInfo.getGameID()}</Col>}
+              <Col className={`${mini ? 'justify-content-center my-1' : 'justify-content-end my-auto'} d-flex p-0 px-2`}>
+                <PokemonTypeImage pokemon={pokemon} maxHeight={mini ? '15px' : '20px'}/>
+              </Col>
             </Row>
           </Card.Body>
         </Card>

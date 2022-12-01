@@ -11,7 +11,7 @@ const LOADING_STATE = {
   ERROR: 'ERROR'
 }
 
-export default function PaginatedPokemonList({ pokemon, search = '', pageCount = 500 }) {
+export default function PaginatedPokemonList({ pokemon, search = '', pageCount = 500, mini = false }) {
   
   // The state for the current page
   const [page, setPage] = useState(0);
@@ -95,11 +95,11 @@ export default function PaginatedPokemonList({ pokemon, search = '', pageCount =
   }
 
   return (
-    <div className='d-flex flex-column'>
+    <div className='d-flex flex-column pagedPokemonListRoot'>
 
-    <div style={{minWidth: "100%", minHeight: "200px"}} className='d-flex justify-content-center align-items-center'>
+    <div style={{minWidth: "100%", minHeight: "500px"}} className='d-flex justify-content-start align-items-start'>
       {(
-        pageLoaded() ? <PokemonList pokemon={currentPage} /> : <PokemonSpinner/>
+        pageLoaded() ? <PokemonList pokemon={currentPage} mini={mini} /> : <PokemonSpinner/>
       )}
     </div>
     

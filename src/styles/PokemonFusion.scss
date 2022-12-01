@@ -1,0 +1,73 @@
+@import "~bootstrap/scss/bootstrap";
+
+.fusionPageRoot{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    // height: fill-available;
+    margin: 0;
+    // display: flex;
+    
+    // .row .col{
+        //     height: ;
+        // }
+    .fusionPageBody{
+        background-color: rgba($dark, 0.9);
+        height: 100%;
+        width: 100%;
+        margin: auto;
+        overflow: auto;
+    }
+    // .fusionPageCol{
+    //     // height: 100vh;
+        
+    // }
+    .fusionPageItem{
+        min-height: 50vh;
+        max-height: 50vh;
+        overflow: hidden;
+    }
+    .fusionPageFuse{
+        min-height: 100vh;
+        
+    }
+    // .detailsBodyRow{
+    //     // height: 100vh;
+        
+    // }
+    // .detailsBodyItem{
+    //     height: fit-content;
+    //     justify-content: center;
+    //     display: flex;
+    //     min-height: 40px;
+    //     align-items: center;
+        
+    //     .outlineContainer{
+    //         max-height: 40px;
+    //         font-size: 1.5rem;
+    //         font-weight: bold;
+    //         color: $dark;
+    //         background-color: rgba($secondary, 0.5);
+    //         // border-radius: 5px;
+    //         border: 1.5px solid $dark;
+            
+    //         &.pokemonNumber{
+    //             border-radius: 5px 0px 0px 5px;
+    //         }
+    //         &.pokemonName{
+    //             border-radius: 0px 5px 5px 0px;
+    //         }
+    //     }
+    // }
+    // .pokemonDetailImage{
+    //     min-height: 200px;
+    //     height: 100%;
+    //     width: auto;
+    //     object-fit: contain;
+    //     background-color: rgba($secondary, 0.5);
+    //     border-radius: 10%;
+    //     border: 8px solid $secondary;
+    //     // height: 100vh;
+        
+    // }
+}
