@@ -54,11 +54,11 @@ export default function ToastyWrapper({children}) {
     <div>
         {children}
         <div className='toastyWrapper px-5'>
-          <div className="toast" role="alert" aria-live="assertive" aria-atomic="true" ref={toastRef}>
+          <div className="toast" role="alert" ref={toastRef}>
             <div className="toast-header d-flex justify-content-between">
                 <strong className="mr-auto">Hey! Live a little.</strong>
                 <button type="button" className="btn btn-sm btn-outline-danger close" onClick={() => setToast(false)} aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
+                  <span>&times;</span>
                 </button>
             </div>
             <div className="toast-body d-flex">

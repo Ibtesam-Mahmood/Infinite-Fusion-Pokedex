@@ -5,8 +5,11 @@ import { Provider } from 'react-redux';
 import App from './App';
 
 // Importing the Bootstrap CSS
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
+// import $ from 'jquery';
+// import Popper from 'popper.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 

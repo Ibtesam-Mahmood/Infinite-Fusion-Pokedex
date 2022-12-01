@@ -36,17 +36,17 @@ export default function AppNavbar({title, showSearch = true, active}) {
     const randomID2 = pokemonIDs[Math.floor(Math.random() * pokemonIDs.length)];
     return `/poke-fusion-dex/fuse?idOne=${randomID1}&idTwo=${randomID2}&fuse=true`;
   }
+  
+  function randUrl(){
+    const randUrl = Math.random() > 0.5 ? randomPokemonUrl() : randomFusionUrl();
+    return randUrl
+  }
 
   const navItems = {
     'Home': () => '/poke-fusion-dex',
     'Fuse': () => '/poke-fusion-dex/fuse',
-    // 'Random Pokemon': () => {
-    //   if(pokemonIDs.length > 0){
-    //     const randomID = pokemonIDs[Math.floor(Math.random() * pokemonIDs.length)];
-    //     return `/poke-fusion-dex/pokemon/${randomID}`;
-    //   }
-    //   return '#';
-    // },
+    'Feeling Lucky': randUrl,
+    // 'Random Fusion': randomFusionUrl,
     // 'About': () => '/poke-fusion-dex/about',
   };
 
@@ -74,15 +74,15 @@ export default function AppNavbar({title, showSearch = true, active}) {
               )
             })
           }
-          <li className="nav-item dropdown px-2">
+          {/* <li className="nav-item dropdown px-2">
             <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Randomize
             </a>
-            <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <div className="dropdown-menu" style={{ margin: 0 }} id="dropdown" aria-labelledby="navbarDropdownMenuLink">
               <a className="dropdown-item" href={randomPokemonUrl()}>Random Pokemon</a>
               <a className="dropdown-item" href={randomFusionUrl()}>Random Fusion</a>
             </div>
-          </li>
+          </li> */}
         </ul>
         
         {/* Search */}
