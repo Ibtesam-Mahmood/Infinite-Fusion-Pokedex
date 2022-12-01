@@ -1,12 +1,15 @@
 import React from 'react'
+import FusemonImageToken from './FusemonImageToken';
+import { useFusemon } from '../../services/hook'
 
 export default function PokemonFuser({fuse1, fuse2}) {
+
+  const fusemon = useFusemon([fuse1, fuse2]);
+  // console.log(fusemon);
   
   return (
     <div className='fuserRoot'>
-      <h5>{fuse1}</h5>
-      <h5>/</h5>
-      <h5>{fuse2}</h5>
+      {fusemon == null ? null : <FusemonImageToken className='fusemonToken' fusemon={fusemon}/>}
     </div>
   )
 }

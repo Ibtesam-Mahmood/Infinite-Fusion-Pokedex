@@ -1,13 +1,15 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
 import { useLoadPokemon } from '../../services/hook';
 import PokemonStats from '../PokemonDetails/PokemonStats';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import { faMagnifyingGlassPlus, faInfoCircle, faClose } from '@fortawesome/free-solid-svg-icons'
+import { faMagnifyingGlassPlus, faInfoCircle, faClose, faShuffle } from '@fortawesome/free-solid-svg-icons'
 import PokemonTypes from '../TypeImage/PokemonTypeImage';
 
-export default function PokemonSelectorView({pokemonID, onFind, onRemove}) {
+export default function PokemonSelectorView({pokemonID, onSelect, onFind}) {
 
   const pokemon = useLoadPokemon(pokemonID);
+  const pokemonIDs = useSelector(state => state.pokemonInfo.map(p => p.getID()));
 
   const disabled = pokemon == null;
   const title = pokemon?.name ?? 'Select a Pokemon';
@@ -22,6 +24,15 @@ export default function PokemonSelectorView({pokemonID, onFind, onRemove}) {
     // console.log(typeOne);
     return `typeBackground-${typeOne}`;
 
+  }
+  
+  function removeSelection() {
+    onSelect(null);
+  }
+
+  function shuffleSelection() {
+    const randomID = pokemonIDs[Math.floor(Math.random() * pokemonIDs.length)];
+    onSelect(randomID);
   }
 
   return (
@@ -72,7 +83,7 @@ export default function PokemonSelectorView({pokemonID, onFind, onRemove}) {
                     {
                       disabled ? null : 
                       <button 
-                        onClick={onRemove}
+                        onClick={removeSelection}
                         disabled={disabled} 
                         type="button" 
                         className="btn btn-sm btn-outline-danger"
@@ -127,6 +138,11 @@ export default function PokemonSelectorView({pokemonID, onFind, onRemove}) {
                 </div>
               </a>
             }
+            <button type="button" className="btn btn-lg btn-outline-primary" onClick={shuffleSelection}>
+              <div className='p-2'>
+                <FontAwesomeIcon icon={faShuffle} />
+              </div>
+            </button>
             <button type="button" className="btn btn-lg btn-outline-warning" onClick={onFind}>
               <div className='p-2'>
                 <FontAwesomeIcon icon={faMagnifyingGlassPlus} />

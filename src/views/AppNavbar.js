@@ -36,7 +36,7 @@ export default function AppNavbar({title, showSearch = true, active}) {
       }
       return '#';
     },
-    'About': () => '/poke-fusion-dex/about',
+    // 'About': () => '/poke-fusion-dex/about',
   };
 
   return (

@@ -5,6 +5,7 @@ import useAbilitiesHook from './hooks/useAbilities';
 import useEvolutionChainHook from './hooks/useEvolutionChain';
 import usePokemonSpeciesHook from './hooks/usePokemonSpecies';
 import usePokemonBySpeciesHook from './hooks/usePokemonBySpecies';
+import useFusemonHook from './hooks/useFusemon';
 
 export const usePokemon = usePokemonHook;
 export const useLoadPokemon = useLoadPokemonHook;
@@ -13,3 +14,4 @@ export const useSpecies = usePokemonSpeciesHook;
 export const usePokemonBySpecies = usePokemonBySpeciesHook;
 export const useMoves = useMovesHook;
 export const useAbilities = useAbilitiesHook;
+export const useFusemon = useFusemonHook;

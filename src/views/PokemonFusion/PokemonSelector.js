@@ -19,10 +19,6 @@ export default function PokemonSelector({selected, onSelect}) {
     setFind(value);
   }
 
-  function handleRemove() {
-    onSelect(null);
-  }
-
   return (
     <div className='selectorRoot p-0 m-0'>
       {
@@ -32,7 +28,7 @@ export default function PokemonSelector({selected, onSelect}) {
           className='p-2' 
           pokemonID={selected} 
           onFind={() => handleFind(true)} 
-          onRemove={handleRemove} 
+          onSelect={handleSelect} 
         />
       }
     </div>
