@@ -59,3 +59,35 @@ body {
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
 }
+
+.appNavBar{
+    background-color: $dark;
+    color: $light;
+    width: 100%;
+    min-height: 70px;
+    font-weight: bold;
+    position: relative;
+
+    .appBarImg{
+        width: 100px;
+        height: auto;
+        margin-right: 10px;
+    }
+
+    .appBarTitle{
+      pointer-events: none;
+      padding: 0;
+      margin: 0;
+      top: 0;
+      height: 70px;
+      position: absolute;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .appNavBarSearch{
+      transition: 0.5s
+    }
+}

@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import loadPokemonThunkAction from '../state/InfinitePokedexStore/thunk/loadPokemonThunkAction';
 import {Row, Col} from 'react-bootstrap';
 import SiteLogo from "../views/SiteLogo";
@@ -14,37 +14,21 @@ import PokemonLocation from '../views/PokemonDetails/PokemonLocation';
 import PokemonTypeEffectiveness from '../views/PokemonDetails/PokemonTypeEffectiveness';
 import PokemonMoves from '../views/PokemonDetails/PokemonMoves';
 import PokemonTypeImage from "../views/typeImage/PokemonTypeImage";
+import AppNavbar from "../views/AppNavbar";
 
 import '../styles/PokemonDetails.scss';
 
 export default function PokemonDetailsPage() {
-
-  const navigate = useNavigate();
 
   const {id} = useParams();
   const pokemon = useLoadPokemon(id);
   const species = useSpecies(pokemon?.getSpeciesID(), true);
   const evolution = useEvolutionChain(species?.getEvolutionID(), true);
 
-  const searchRef = useRef();
-
   // console.log(pokemon);
   // console.log(species);
   // console.log(evolution);
   // console.log('-------');
-
-  function handleKeyDown(e) {
-    if (e.key === 'Enter') {
-      navigateToSearch(e.target.value);
-    }
-  }
-  
-  function navigateToSearch(term){
-    if(term != ''){
-      // console.log(term);
-      navigate(`/poke-fusion-dex?search=${term}`);
-    }
-  }
 
   function getPokemonTypeColor() {
     if(pokemon == null){
@@ -59,39 +43,8 @@ export default function PokemonDetailsPage() {
 
   return (
     <div className='detailsRoot'>
-      <nav className='navbar sticky-top bg-light justify-content-between px-5'>
-
-        <SiteLogo className='navbar-brand my-auto'/>
-        {(
-          pokemon == null ? <div className='placeholder'/> 
-          : <h2 className='text-capitalize'>{pokemon.name}</h2>
-        )}
-
-        {/* Search Bar */}
-        <div className=''>
-          <div className="input-group input-group-sm align-items-center">
-            <input 
-              ref={searchRef}
-              style={{"width":"25vw"}}
-              type="text" 
-              className="form-control searchPokemon" 
-              aria-describedby="inputGroup-sizing-sm"
-              placeholder='Search Pokemon...'
-              onKeyDown={handleKeyDown}
-            />
-            <div className="input-group-append ms-1">
-              <button 
-                className="btn btn-outline-primary btn-sm" 
-                type="submit" 
-                onClick={() => navigateToSearch(searchRef.current.value)}
-              >
-                <FontAwesomeIcon icon={faMagnifyingGlass} />
-              </button>
-            </div>
-          </div>
-        </div>
-
-      </nav>
+      {/* Nav Bar */}
+      <AppNavbar title={pokemon?.name}/>
       
       <Row className='detailsBody w-100'>
         <Col sm={12} md={6} lg={4} xl={3} className='detailsBodyCol'>

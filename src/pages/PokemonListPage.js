@@ -2,35 +2,47 @@ import PaginatedPokemonList from '../views/PokemonList/PaginatedPokemonList';
 import React, {useEffect, useState} from 'react'
 import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
-import SiteLogo from "../views/SiteLogo";
+import AppNavbar from "../views/AppNavbar";
 
 import '../styles/PokemonHeader.scss';
 
 export default function PokemonListPage() {
 
   const pokemon = useSelector(state => state.pokemonInfo);
-
+  
   const [searchParams] = useSearchParams();
-
+  
   const [searchTerm, setSearchTerm] = useState('');
   const [filterTerm, setFilterTerm] = useState('');
-
+  
   const filterOverrideParam = searchParams.get("search");
-
+  
+  const [showSearch, setShowSearch] = useState(false);
+  
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       setFilterTerm(searchTerm)
     }, 1000);
-
+    
     return () => clearTimeout(delayDebounceFn);
-  }, [searchTerm])
+  }, [searchTerm]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+    
+  const handleScroll = () => {
+      const position = window.pageYOffset;
+      setShowSearch(position > 360);
+  };
 
   return (
     <>
-      <nav className='navbar sticky-top bg-light justify-content-between px-5'>
-        <SiteLogo className='navbar-brand my-auto'/>
-        <h2 >Home</h2>
-      </nav>
+
+      <AppNavbar showSearch={showSearch} active={'home'} />
 
       {/* Header container */}
       <div className='container-fluid pokemonHeader'>
