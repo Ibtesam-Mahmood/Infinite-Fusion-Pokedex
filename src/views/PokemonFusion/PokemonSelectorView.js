@@ -71,11 +71,16 @@ export default function PokemonSelectorView({pokemonID, onFind, onRemove}) {
                   <div className="col-6 d-flex justify-content-end">
                     {
                       disabled ? null : 
-                      <a href={`/poke-fusion-dex/pokemon/${pokemonID}`} disabled={disabled} type="button" className="btn btn-sm btn-outline-info">
+                      <button 
+                        onClick={onRemove}
+                        disabled={disabled} 
+                        type="button" 
+                        className="btn btn-sm btn-outline-danger"
+                      >
                         <div className='px-1'>
-                          <FontAwesomeIcon icon={faInfoCircle} color={'$info'} />
+                          <FontAwesomeIcon icon={faClose} color={'$info'} />
                         </div>
-                      </a>
+                      </button>
                     }
                   </div>
                   <div className="col col-12">
@@ -112,11 +117,15 @@ export default function PokemonSelectorView({pokemonID, onFind, onRemove}) {
           <td className='pe-0 mx-3 btn-group'>
             {
               disabled ? null : 
-              <button type="button" className="btn btn-lg btn-outline-danger" onClick={onRemove}>
+              <a 
+                type="button" 
+                className="btn btn-lg btn-outline-info" 
+                href={`/poke-fusion-dex/pokemon/${pokemonID}`} 
+              >
                 <div className='p-2'>
-                  <FontAwesomeIcon icon={faClose} />
+                  <FontAwesomeIcon icon={faInfoCircle}/>
                 </div>
-              </button>
+              </a>
             }
             <button type="button" className="btn btn-lg btn-outline-warning" onClick={onFind}>
               <div className='p-2'>

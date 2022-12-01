@@ -61,10 +61,10 @@ export default function PokemonFusionPage() {
         <div className='fusionPageCol col col-12 col-md-8  p-0'>
           <div className='fusionPageFuse'>
             <div className='row m-0'>
-              <div className='fusionPageItem col col-12 p-1 '>
+              <div className='fusionPageItem col col-12 p-1'>
                 <PokemonFuser fuse1={fuseID1} fuse2={fuseID2}/> 
               </div>
-              <div className='fusionPageItem col col-12 p-1 '>
+              <div className='fusionPageItem col col-12 p-1'>
                 <PokemonFuser fuse1={fuseID2} fuse2={fuseID1}/> 
               </div>
             </div>
@@ -72,7 +72,7 @@ export default function PokemonFusionPage() {
               <button 
                 disabled={!canFuse} 
                 onClick={setFusionIDs}
-                type="button" className="btn btn-warning btn-lg"
+                type="button" className="btn btn-warning btn-lg fuseButton"
               >
                 <h3 className='p-0 m-0 font-weight-bold font-italic'>
                   Fuse

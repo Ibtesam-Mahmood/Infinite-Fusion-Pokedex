@@ -88,7 +88,7 @@ export default function PokemonDetailsPage() {
               <button 
                 disabled={pokemon?.getGameID() == 'NA'} 
                 onClick={navigateToFusion}
-                type="button" className="btn btn-warning btn-lg w-100"
+                type="button" className="btn btn-warning btn-lg w-100 fuseButton"
               >
                 <h3 className='p-0 m-0 font-weight-bold font-italic'>
                   {pokemon?.getGameID() == 'NA' ? 'Not In Game' : 'Fuse Pokemon'}

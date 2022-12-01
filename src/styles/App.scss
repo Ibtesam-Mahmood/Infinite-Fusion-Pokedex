@@ -32,6 +32,35 @@ body {
 
 // }
 
+.fuseButton{
+  position: relative;
+  width: 30%;
+  z-index: 1;
+  border-width: 5px;
+  transition: 0.3s ease-in-out;
+  background-color: $dark;
+  color: $warning;
+  box-shadow: 0px 3px 10px 5px rgba($light, 0.5);
+  
+  &.btn{
+    &:disabled{
+      box-shadow: none;
+      color: rgba($dark, 0.6);
+      border-width: 3px;
+      opacity: 1.0;
+      border-color: $dark;
+      background-color: $secondary;
+    }
+    
+    &:hover{
+        box-shadow: 0px 3px 12px 10px rgba($warning, 0.5);
+        color: $dark;
+        // border-color: $dark;
+        background-color: $warning;
+    }
+  }
+}
+
 .pagedPokemonListRoot{
   background-color: rgba($dark, 0.85);
 }

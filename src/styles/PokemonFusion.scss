@@ -57,72 +57,16 @@
             content: '';
             z-index: -1;
         }
-        .btn{
-            position: relative;
-            width: 30%;
-            z-index: 1;
-            border-width: 5px;
-            transition: 0.3s ease-in-out;
-            background-color: $dark;
-            color: $warning;
-            box-shadow: 0px 3px 10px 5px rgba($light, 0.5);
-            
-            &:disabled{
-                box-shadow: none;
-                color: rgba($dark, 0.6);
-                border-width: 3px;
-                opacity: 1.0;
-                border-color: $dark;
-                background-color: $secondary;
-            }
-            
-            &:hover{
-                box-shadow: 0px 3px 12px 10px rgba($warning, 0.5);
-                color: $dark;
-                // border-color: $dark;
-                background-color: $warning;
-            }
-        }
     }
-    // .detailsBodyRow{
-    //     // height: 100vh;
-        
-    // }
-    // .detailsBodyItem{
-    //     height: fit-content;
-    //     justify-content: center;
-    //     display: flex;
-    //     min-height: 40px;
-    //     align-items: center;
-        
-    //     .outlineContainer{
-    //         max-height: 40px;
-    //         font-size: 1.5rem;
-    //         font-weight: bold;
-    //         color: $dark;
-    //         background-color: rgba($secondary, 0.5);
-    //         // border-radius: 5px;
-    //         border: 1.5px solid $dark;
-            
-    //         &.pokemonNumber{
-    //             border-radius: 5px 0px 0px 5px;
-    //         }
-    //         &.pokemonName{
-    //             border-radius: 0px 5px 5px 0px;
-    //         }
-    //     }
-    // }
-    // .pokemonDetailImage{
-    //     min-height: 200px;
-    //     height: 100%;
-    //     width: auto;
-    //     object-fit: contain;
-    //     background-color: rgba($secondary, 0.5);
-    //     border-radius: 10%;
-    //     border: 8px solid $secondary;
-    //     // height: 100vh;
-        
-    // }
+}
+
+.fuserRoot{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .selectorRoot{
