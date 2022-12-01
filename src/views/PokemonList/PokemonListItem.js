@@ -8,12 +8,13 @@ import PokemonTypeImage from "../TypeImage/PokemonTypeImage";
 
 import '../../styles/TypeStyles.scss';
 
-export default function PokemonListItem({ pokemonInfo, mini = false }) {
+export default function PokemonListItem({ pokemonInfo, mini = false, onItemTap }) {
 
   const id = parseInt(pokemonInfo.getID());
   const pokemon = usePokemon(id);
 
   const spriteImg = pokemon != null && pokemon.sprites != null ? pokemon.sprites.front_default : '';
+  const fullImg = pokemon?.sprites?.other?.['official-artwork']?.front_default ?? pokemon?.sprites?.front_default ?? '';
   
   // Uses a refrence to the card to bind a hover event
   const hoverRef = useRef(null);
@@ -34,7 +35,11 @@ export default function PokemonListItem({ pokemonInfo, mini = false }) {
 
   return (
     <div className={`pokemonCard ${miniClass}`}>
-      <Link to={`/poke-fusion-dex/pokemon/${pokemonInfo.getID()}`} style={{ textDecoration: 'none' }}>
+      <Link 
+        to={onItemTap != null ? '#' : `/poke-fusion-dex/pokemon/${pokemonInfo.getID()}`} 
+        onClick={() => onItemTap(pokemonInfo)} 
+        style={{ textDecoration: 'none' }}
+      >
         <Card
           bg='dark'
           text='white'
@@ -56,10 +61,10 @@ export default function PokemonListItem({ pokemonInfo, mini = false }) {
             variant='overlay' 
             style={{objectFit: "cover", display: hovered ? "block" : "none", transition: "visible 1s"}}
             className={`align-self-center w-100 h-100 m-0 p-0`} 
-            // height="150"
-            // width="150"
+            height="150"
+            width="150"
             loading="lazy"
-            src={spriteImg}
+            src={mini ? spriteImg : fullImg}
           />
           <Card.Body className="p-0">
             <Row className='' style={{margin:"auto"}}>

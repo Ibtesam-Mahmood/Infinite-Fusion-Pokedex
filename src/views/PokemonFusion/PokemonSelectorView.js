@@ -2,10 +2,10 @@ import React from 'react';
 import { useLoadPokemon } from '../../services/hook';
 import PokemonStats from '../PokemonDetails/PokemonStats';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import { faMagnifyingGlassPlus, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import { faMagnifyingGlassPlus, faInfoCircle, faClose } from '@fortawesome/free-solid-svg-icons'
 import PokemonTypes from '../TypeImage/PokemonTypeImage';
 
-export default function PokemonSelectorView({pokemonID, onFind}) {
+export default function PokemonSelectorView({pokemonID, onFind, onRemove}) {
 
   const pokemon = useLoadPokemon(pokemonID);
 
@@ -24,29 +24,25 @@ export default function PokemonSelectorView({pokemonID, onFind}) {
 
   }
 
-  function name(params) {
-    
-  }
-
   return (
     <table className='selectorDisplay'>
       <thead>
-        <th colspan="4" className='text-capitalize'>{title}</th>
+        <tr><th colSpan="4" className='text-capitalize'>{title}</th></tr>
       </thead>
       <tbody>
         <tr className=''>
-          <td colspan="2" className='p-3'>
-            <div class="row">
+          <td colSpan="2" className='p-3'>
+            <div className="row">
 
               {/* Image and Type */}
-              <div class="col col-6">
+              <div className="col col-6">
                 <div className={`${getPokemonTypeColor()} selectedPokemonImage mx-auto`} >
                   {
-                    disabled ? <div className='d-flex justify-content-center my-5'>
-                      <button type="button" className="btn btn-lg btn-outline-warning">
+                    disabled ? <div className='d-flex justify-content-center my-5 mx-3'>
+                      <button type="button" className="btn btn-lg btn-outline-warning" onClick={onFind}>
                         <div className='p-2'>
                           <FontAwesomeIcon icon={faMagnifyingGlassPlus} />
-                          <span className='ps-2'>Find Pokemon</span>
+                          <span className='ps-2'>Select Pokemon</span>
                         </div>
                       </button>
                     </div> : 
@@ -67,19 +63,19 @@ export default function PokemonSelectorView({pokemonID, onFind}) {
               </div>
 
               {/* Stats */}
-              <div class="col col-6">
-                <div class="row justify-content-between gy-2">
-                  <div class="col-6 text-start">
+              <div className="col col-6">
+                <div className="row justify-content-between gy-2">
+                  <div className="col-6 text-start">
                     <h5 className='text-capitalize p-0 m-0'>{pokemonIDTitle}</h5>
                   </div>
-                  <div class="col-6 d-flex justify-content-end">
+                  <div className="col-6 d-flex justify-content-end">
                     <button disabled={disabled} type="button" className="btn btn-sm btn-outline-info">
                       <div className='px-1'>
                         <FontAwesomeIcon icon={faInfoCircle} color={'$info'} />
                       </div>
                     </button>
                   </div>
-                  <div class="col col-12">
+                  <div className="col col-12">
                     {disabled ? null : <PokemonStats pokemon={pokemon} variant={true}/>}
                   </div>
                 </div>
@@ -110,8 +106,16 @@ export default function PokemonSelectorView({pokemonID, onFind}) {
             }
             </div>
           </td>
-          <td className='pe-0'>
-            <button type="button" className="btn btn-lg btn-outline-warning">
+          <td className='pe-0 row mx-3'>
+            {
+              disabled ? null : 
+              <button type="button" className="btn btn-lg btn-outline-danger col" onClick={onRemove}>
+                <div className='p-2'>
+                  <FontAwesomeIcon icon={faClose} />
+                </div>
+              </button>
+            }
+            <button type="button" className="btn btn-lg btn-outline-warning col ms-3" onClick={onFind}>
               <div className='p-2'>
                 <FontAwesomeIcon icon={faMagnifyingGlassPlus} />
               </div>

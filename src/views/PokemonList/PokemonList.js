@@ -2,7 +2,7 @@ import React from 'react'
 import PokemonListItem from './PokemonListItem';
 import {Row, Col} from 'react-bootstrap';
 
-export default function PokemonList({ pokemon, mini = false }) {
+export default function PokemonList({ pokemon, mini = false, onItemTap }) {
 
   return (
     <Row className="m-1 justify-content-center">
@@ -15,6 +15,7 @@ export default function PokemonList({ pokemon, mini = false }) {
             <PokemonListItem 
               pokemonInfo={p} 
               mini={mini}
+              onItemTap={onItemTap}
             />
           </Col>
         ))

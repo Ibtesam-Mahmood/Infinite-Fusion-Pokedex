@@ -1,10 +1,12 @@
-import React from 'react'
+import React, {useState} from 'react'
 import AppNavbar from "../views/AppNavbar";
 import PokemonSelector from '../views/PokemonFusion/PokemonSelector';
 
 import '../styles/PokemonFusion.scss';
 
 export default function PokemonFusionPage() {
+  
+  const [pokemon1, setPokemon1] = useState(1);
 
   return (
     <div className='fusionPageRoot'>
@@ -14,7 +16,7 @@ export default function PokemonFusionPage() {
         <div className='fusionPageCol col col-12 col-md-4'>
           <div className='row'>
             <div className='fusionPageItem col col-12 p-1'>
-              <PokemonSelector /> 
+              <PokemonSelector selected={pokemon1} onSelect={setPokemon1}/> 
             </div>
             <div className='fusionPageItem col col-12'>
 
