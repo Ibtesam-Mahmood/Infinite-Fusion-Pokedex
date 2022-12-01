@@ -11,7 +11,7 @@ export default function PokemonSelectorView({pokemonID, onFind, onRemove}) {
 
   const disabled = pokemon == null;
   const title = pokemon?.name ?? 'Select a Pokemon';
-  const pokemonIDTitle = `No. ${pokemonID ?? '-'}`;
+  const pokemonIDTitle = `No. ${pokemon?.getGameID() ?? '-'}`;
 
   function getPokemonTypeColor() {
     if(pokemon == null){
@@ -69,11 +69,14 @@ export default function PokemonSelectorView({pokemonID, onFind, onRemove}) {
                     <h5 className='text-capitalize p-0 m-0'>{pokemonIDTitle}</h5>
                   </div>
                   <div className="col-6 d-flex justify-content-end">
-                    <button disabled={disabled} type="button" className="btn btn-sm btn-outline-info">
-                      <div className='px-1'>
-                        <FontAwesomeIcon icon={faInfoCircle} color={'$info'} />
-                      </div>
-                    </button>
+                    {
+                      disabled ? null : 
+                      <a href={`/poke-fusion-dex/pokemon/${pokemonID}`} disabled={disabled} type="button" className="btn btn-sm btn-outline-info">
+                        <div className='px-1'>
+                          <FontAwesomeIcon icon={faInfoCircle} color={'$info'} />
+                        </div>
+                      </a>
+                    }
                   </div>
                   <div className="col col-12">
                     {disabled ? null : <PokemonStats pokemon={pokemon} variant={true}/>}
@@ -92,7 +95,7 @@ export default function PokemonSelectorView({pokemonID, onFind, onRemove}) {
           {/* Abilities */}
           <td style={{width: '70%'}} className='selectedPokemonAbilities px-4'>
             <div className='d-flex justify-content-start'>
-              <h6>Abilities:</h6>
+              <h6>{disabled ? '' : 'Abilities:'}</h6>
             </div>
             <div className='row'>
             {
@@ -106,16 +109,16 @@ export default function PokemonSelectorView({pokemonID, onFind, onRemove}) {
             }
             </div>
           </td>
-          <td className='pe-0 row mx-3'>
+          <td className='pe-0 mx-3 btn-group'>
             {
               disabled ? null : 
-              <button type="button" className="btn btn-lg btn-outline-danger col" onClick={onRemove}>
+              <button type="button" className="btn btn-lg btn-outline-danger" onClick={onRemove}>
                 <div className='p-2'>
                   <FontAwesomeIcon icon={faClose} />
                 </div>
               </button>
             }
-            <button type="button" className="btn btn-lg btn-outline-warning col ms-3" onClick={onFind}>
+            <button type="button" className="btn btn-lg btn-outline-warning" onClick={onFind}>
               <div className='p-2'>
                 <FontAwesomeIcon icon={faMagnifyingGlassPlus} />
               </div>

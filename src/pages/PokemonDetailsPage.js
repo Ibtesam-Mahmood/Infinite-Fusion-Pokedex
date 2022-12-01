@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import loadPokemonThunkAction from '../state/InfinitePokedexStore/thunk/loadPokemonThunkAction';
 import {Row, Col} from 'react-bootstrap';
 import SiteLogo from "../views/SiteLogo";
@@ -18,7 +18,9 @@ import '../styles/PokemonDetails.scss';
 
 export default function PokemonDetailsPage() {
 
+  const navigate = useNavigate();
   const {id} = useParams();
+
   const pokemon = useLoadPokemon(id);
   const species = useSpecies(pokemon?.getSpeciesID(), true);
   const evolution = useEvolutionChain(species?.getEvolutionID(), true);
@@ -37,6 +39,10 @@ export default function PokemonDetailsPage() {
     // console.log(typeOne);
     return `typeBackground-${typeOne}`;
 
+  }
+
+  function navigateToFusion() {
+    navigate('/poke-fusion-dex/fuse?idOne=' + id);
   }
 
   return (
@@ -59,7 +65,7 @@ export default function PokemonDetailsPage() {
 
             {/* Pokemon Type and Name */}
             <Col sm={12} className='detailsBodyItem p-1 pb-2 container'>
-              <div className='outlineContainer pokemonNumber px-3 py-0'>#{pokemon?.getGameID()}</div>
+              <div className='outlineContainer pokemonNumber px-3 py-0'>#{pokemon?.getGameID() ?? '-'}</div>
               <div className='outlineContainer text-capitalize pokemonName px-3 py-0'>{pokemon?.name}</div>
             </Col>
             <Col sm={12} className='detailsBodyItem pb-2 p-1 justify-content-center container'>
@@ -76,6 +82,20 @@ export default function PokemonDetailsPage() {
         
         <Col sm={12} md={6} lg={4} xl={3} className='detailsBodyCol'>
           <Row className='detailsBodyRow'>
+
+            {/* Fusion Button */}
+            <Col sm={12} className='detailsBodyItem p-4'>
+              <button 
+                disabled={pokemon?.getGameID() == 'NA'} 
+                onClick={navigateToFusion}
+                type="button" className="btn btn-warning btn-lg w-100"
+              >
+                <h3 className='p-0 m-0 font-weight-bold font-italic'>
+                  {pokemon?.getGameID() == 'NA' ? 'Not In Game' : 'Fuse Pokemon'}
+                </h3>
+              </button>
+            </Col>
+
             {/* Pokemon Description */}
             <Col sm={12} className='detailsBodyItem p-1'>
               <PokemonDescription pokemon={pokemon} species={species} />
