@@ -1,12 +1,18 @@
 import React, {useState} from 'react'
 import AppNavbar from "../views/AppNavbar";
+import { useSelector } from 'react-redux';
 import PokemonSelector from '../views/PokemonFusion/PokemonSelector';
 import PokemonFuser from '../views/PokemonFusion/PokemonFuser';
 import { useSearchParams, useNavigate } from 'react-router-dom';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { faShuffle } from '@fortawesome/free-solid-svg-icons';
 
 import '../styles/PokemonFusion.scss';
 
 export default function PokemonFusionPage() {
+
+  const pokemonIDs = useSelector(state => state.pokemonInfo.map(p => p.getID()));
+  const canRandomize = pokemonIDs.length > 400;
 
   const [fuseState, setFuseState] = useState([null, null]);
   const [fuseID1, fuseID2] = fuseState;
@@ -48,6 +54,12 @@ export default function PokemonFusionPage() {
     }, 100);
   }
 
+  function randomFusionUrl() {
+    const randomID1 = pokemonIDs[Math.floor(Math.random() * pokemonIDs.length)];
+    const randomID2 = pokemonIDs[Math.floor(Math.random() * pokemonIDs.length)];
+    navigate(`/poke-fusion-dex/fuse?idOne=${randomID1}&idTwo=${randomID2}&fuse=true`);
+  }
+
   return (
     <div className='fusionPageRoot'>
       <AppNavbar active='fuse'/>
@@ -77,11 +89,18 @@ export default function PokemonFusionPage() {
               <button 
                 disabled={!canFuse} 
                 onClick={setFusionIDs}
-                type="button" className="btn btn-warning btn-lg fuseButton"
+                type="button" className="btn btn-warning btn-lg fuseButton me-3"
               >
                 <h3 className='p-0 m-0 font-weight-bold font-italic'>
                   Fuse
                 </h3>
+              </button>
+              <button 
+                disabled={!canRandomize} 
+                onClick={randomFusionUrl}
+                type="button" className="btn btn-primary"
+              >
+                <FontAwesomeIcon icon={faShuffle} />
               </button>
             </div>
           </div>

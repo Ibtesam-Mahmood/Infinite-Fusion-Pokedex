@@ -13,7 +13,7 @@ export default function ToastyWrapper({children}) {
 
   const pokemonIDs = useSelector(state => state.pokemonInfo.map(p => p.getID()));
 
-  const loaded = pokemonIDs.length > 0;
+  const loaded = pokemonIDs.length > 400;
 
   var [toast, setToast] = useState(false);
   const toastRef = useRef();
