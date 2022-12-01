@@ -80,6 +80,7 @@
     border-radius: 10%;
     background-color: $dark;
     color: $light;
+    overflow: hidden;
 
     table{
         width: 100%;
@@ -96,11 +97,20 @@
         }
     }
 
+    .selectorListRoot{
+        position: absolute;
+        height: 100%;
+        overflow: scroll;
+        overflow-x: hidden;
+        // border-radius: 10%;
+    }
+
     .selectedPokemonImage{
         box-sizing: border-box;
         -moz-box-sizing: border-box;
         -webkit-box-sizing: border-box;
         position: relative;
+        // min-height: 200px;
         max-height: 300px;
         max-width: 300px;
         object-fit: contain;

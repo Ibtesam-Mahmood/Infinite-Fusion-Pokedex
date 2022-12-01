@@ -7,11 +7,11 @@ const useLoadPokemonHook = (id) => {
     const pokemap = useSelector(state => state.pokemap);
     const dispatch = useDispatch();
 
-    const pokemon = pokemap[parseInt(id)];
+    const pokemon = id == null ? null : pokemap[parseInt(id)];
 
     // On init state attempt to fetch the pokemon
     useEffect(() => {
-        if(pokemon == null){
+        if(pokemon == null && id != null){
             dispatch(PokemonStoreAction.thunk.loadPokemonByID({id: id}));
         }
     }, [id]);
