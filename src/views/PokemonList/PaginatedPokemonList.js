@@ -94,12 +94,15 @@ export default function PaginatedPokemonList({ pokemon, search = '', pageCount =
     }
   }
 
+  const isLoaded = pageLoaded();
+  const align = isLoaded ? 'start' : 'center';
+
   return (
     <div className='d-flex flex-column pagedPokemonListRoot'>
 
-    <div style={{minWidth: "100%", minHeight: "500px"}} className='d-flex justify-content-start align-items-start'>
+    <div style={{minWidth: "100%", minHeight: "500px"}} className={`d-flex justify-content-${align} align-items-${align}`}>
       {(
-        pageLoaded() ? <PokemonList pokemon={currentPage} mini={mini} /> : <PokemonSpinner/>
+        isLoaded ? <PokemonList pokemon={currentPage} mini={mini} /> : <PokemonSpinner/>
       )}
     </div>
     
