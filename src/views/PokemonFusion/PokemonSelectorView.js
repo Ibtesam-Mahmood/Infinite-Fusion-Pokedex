@@ -4,7 +4,7 @@ import { useLoadPokemon } from '../../services/hook';
 import PokemonStats from '../PokemonDetails/PokemonStats';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlassPlus, faInfoCircle, faClose, faShuffle } from '@fortawesome/free-solid-svg-icons'
-// import PokemonTypes from '../TypeImage/PokemonTypeImage';
+import PokemonTypes from '../TypeImage/PokemonTypeImage';
 
 export default function PokemonSelectorView({pokemonID, onSelect, onFind}) {
 
@@ -86,7 +86,7 @@ export default function PokemonSelectorView({pokemonID, onSelect, onFind}) {
                           alt={pokemon?.name}
                         />
                         <div className='selectedTypeContainer'>
-                          {/* <PokemonTypes pokemon={pokemon} variant={true} /> */}
+                          <PokemonTypes pokemon={pokemon} variant={true} />
                         </div>
                       </>
                     }

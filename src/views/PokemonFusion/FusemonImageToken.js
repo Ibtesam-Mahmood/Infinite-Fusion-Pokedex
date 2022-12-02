@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-// import PokemonTypeImage from "../TypeImage/PokemonTypeImage";
+import PokemonTypeImage from "../TypeImage/PokemonTypeImage";
 
 export default function FusemonImageToken({fusemon}) {
 
@@ -36,7 +36,7 @@ export default function FusemonImageToken({fusemon}) {
       </div>
       <div className='pokemonName pt-1'>
         <h6 className='text-capitalize container p-0 m-0 pb-2'>{fusemon?.name}</h6>
-        {/* <PokemonTypeImage pokemon={fusemon} maxHeight='20px'/> */}
+        <PokemonTypeImage pokemon={fusemon} maxHeight='20px'/>
       </div>
     </div>
   )
