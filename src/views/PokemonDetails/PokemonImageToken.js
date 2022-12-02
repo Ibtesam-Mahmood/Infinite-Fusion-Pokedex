@@ -1,5 +1,5 @@
 import React from 'react'
-import PokemonTypeImage from "../TypeImage/PokemonTypeImage";
+// import PokemonTypeImage from "../TypeImage/PokemonTypeImage";
 import { Link } from 'react-router-dom';
 
 
@@ -16,7 +16,7 @@ export default function PokemonImageToken({pokemon}) {
         </div>
         <div className='pokemonName pt-1'>
           <h6 className='text-capitalize container p-0 m-0 pb-2'>{pokemon.getGameID()}. {pokemon?.name}</h6>
-          <PokemonTypeImage pokemon={pokemon} maxHeight='20px'/>
+          {/* <PokemonTypeImage pokemon={pokemon} maxHeight='20px'/> */}
         </div>
       </div>
     </Link>
