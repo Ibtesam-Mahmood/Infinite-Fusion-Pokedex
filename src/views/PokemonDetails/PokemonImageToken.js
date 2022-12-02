@@ -1,5 +1,5 @@
 import React from 'react'
-import PokemonTypeImage from "../TypeImage/PokemonTypeImage";
+import PokemonTypeImage from "../TypeImages/PokemonTypeImage";
 import { Link } from 'react-router-dom';
 
 

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import PokemonTypeImage from "../TypeImage/PokemonTypeImage";
+import PokemonTypeImage from "../TypeImages/PokemonTypeImage";
 
 export default function FusemonImageToken({fusemon}) {
 

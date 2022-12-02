@@ -4,7 +4,7 @@ import { useLoadPokemon } from '../../services/hook';
 import PokemonStats from '../PokemonDetails/PokemonStats';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlassPlus, faInfoCircle, faClose, faShuffle } from '@fortawesome/free-solid-svg-icons'
-import PokemonTypes from '../TypeImage/PokemonTypeImage';
+import PokemonTypes from '../TypeImages/PokemonTypeImage';
 
 export default function PokemonSelectorView({pokemonID, onSelect, onFind}) {
 

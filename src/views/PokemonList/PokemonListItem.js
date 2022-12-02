@@ -4,7 +4,7 @@ import { useHover } from 'usehooks-ts';
 import { Link } from 'react-router-dom';
 import { Card, Row, Col } from "react-bootstrap";
 import { capatalize } from '../../services/functions';
-import PokemonTypeImage from "../TypeImage/PokemonTypeImage";
+import PokemonTypeImage from "../TypeImages/PokemonTypeImage";
 
 import '../../styles/TypeStyles.scss';
 

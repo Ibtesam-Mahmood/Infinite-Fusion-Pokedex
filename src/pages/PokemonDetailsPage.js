@@ -11,7 +11,7 @@ import PokemonEvolutionDetails from '../views/PokemonDetails/PokemonEvolutionDet
 import PokemonLocation from '../views/PokemonDetails/PokemonLocation';
 import PokemonTypeEffectiveness from '../views/PokemonDetails/PokemonTypeEffectiveness';
 import PokemonMoves from '../views/PokemonDetails/PokemonMoves';
-import PokemonTypeImage from "../views/TypeImage/PokemonTypeImage";
+import PokemonTypeImage from "../views/TypeImages/PokemonTypeImage";
 import AppNavbar from "../views/AppNavbar";
 
 import '../styles/PokemonDetails.scss';
