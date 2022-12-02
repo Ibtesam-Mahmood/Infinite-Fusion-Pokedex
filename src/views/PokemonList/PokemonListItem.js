@@ -4,7 +4,7 @@ import { useHover } from 'usehooks-ts';
 import { Link } from 'react-router-dom';
 import { Card, Row, Col } from "react-bootstrap";
 import { capatalize } from '../../services/functions';
-import PokemonTypeImage from "../TypeImage/PokemonTypeImage";
+// import PokemonTypeImage from "../TypeImage/PokemonTypeImage";
 
 import '../../styles/TypeStyles.scss';
 
@@ -70,7 +70,7 @@ export default function PokemonListItem({ pokemonInfo, mini = false, onItemTap }
             <Row className='' style={{margin:"auto"}}>
               {mini ? null : <Col className='pokeNumberBox col-auto ps-2 pe-3 my-2'>No.{pokemonInfo.getGameID()}</Col>}
               <Col className={`${mini ? 'justify-content-center my-1' : 'justify-content-end my-auto'} d-flex p-0 px-2`}>
-                <PokemonTypeImage pokemon={pokemon} maxHeight={mini ? '15px' : '20px'}/>
+                {/* <PokemonTypeImage pokemon={pokemon} maxHeight={mini ? '15px' : '20px'}/> */}
               </Col>
             </Row>
           </Card.Body>
