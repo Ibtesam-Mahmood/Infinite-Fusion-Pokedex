@@ -1,9 +1,6 @@
-import React, { useRef } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
-import loadPokemonThunkAction from '../state/InfinitePokedexStore/thunk/loadPokemonThunkAction';
 import {Row, Col} from 'react-bootstrap';
-import SiteLogo from "../views/SiteLogo";
 import {useLoadPokemon, useEvolutionChain, useSpecies} from '../services/hook';
 import PokemonStats from '../views/PokemonDetails/PokemonStats';
 import PokemonDescription from '../views/PokemonDetails/PokemonDescription';
@@ -11,7 +8,7 @@ import PokemonEvolutionDetails from '../views/PokemonDetails/PokemonEvolutionDet
 import PokemonLocation from '../views/PokemonDetails/PokemonLocation';
 import PokemonTypeEffectiveness from '../views/PokemonDetails/PokemonTypeEffectiveness';
 import PokemonMoves from '../views/PokemonDetails/PokemonMoves';
-import PokemonTypeImage from "../views/TypeImage/PokemonTypeImage";
+// import PokemonTypeImage from "../views/TypeImage/PokemonTypeImage";
 import AppNavbar from "../views/AppNavbar";
 
 import '../styles/PokemonDetails.scss';
@@ -69,7 +66,7 @@ export default function PokemonDetailsPage() {
               <div className='outlineContainer text-capitalize pokemonName px-3 py-0'>{pokemon?.name}</div>
             </Col>
             <Col sm={12} className='detailsBodyItem pb-2 p-1 justify-content-center container'>
-              <PokemonTypeImage pokemon={pokemon} maxHeight='40px'/>
+              {/* <PokemonTypeImage pokemon={pokemon} maxHeight='40px'/> */}
             </Col>
 
             
