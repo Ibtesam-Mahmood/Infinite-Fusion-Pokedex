@@ -14,28 +14,16 @@ export default function PokemonFusionPage() {
   const pokemonIDs = useSelector(state => state.pokemonInfo.map(p => p.getID()));
   const canRandomize = pokemonIDs.length > 400;
 
-  const [fuseState, setFuseState] = useState([null, null]);
-  const [fuseID1, fuseID2] = fuseState;
-
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
   const pokemon1Param = parseInt(searchParams.get("idOne"));
   const pokemon2Param = parseInt(searchParams.get("idTwo"));
-  const autoFuse = searchParams.get("fuse");
 
   const pokemon1 = pokemon1Param ? parseInt(pokemon1Param) : null;
   const pokemon2 = pokemon2Param ? parseInt(pokemon2Param) : null;
 
   const canFuse = pokemon1 != null && pokemon2 != null;
-
-  if(autoFuse && canFuse && fuseID1 != pokemon1 && fuseID2 != pokemon2){
-    setFusionIDs();
-  }
-
-  function setFusionIDs(){
-    setFuseState([pokemon1, pokemon2]);
-  }
 
   function setPokemonID(id, index){
     const id1 = index === 1 ? id : pokemon1;
@@ -79,22 +67,22 @@ export default function PokemonFusionPage() {
           <div className='fusionPageFuse'>
             <div className='row m-0'>
               <div className='fusionPageItem col col-12 p-1'>
-                <PokemonFuser fuse1={fuseID1} fuse2={fuseID2}/> 
+                <PokemonFuser fuse1={pokemon1} fuse2={pokemon2}/> 
               </div>
               <div className='fusionPageItem col col-12 p-1'>
-                <PokemonFuser fuse1={fuseID2} fuse2={fuseID1}/> 
+                <PokemonFuser fuse1={pokemon2} fuse2={pokemon1}/> 
               </div>
             </div>
             <div className='fuseFloating'>
-              <button 
+              {/* <button 
                 disabled={!canFuse} 
-                onClick={setFusionIDs}
+                onClick={()=>{}}
                 type="button" className="btn btn-warning btn-lg fuseButton me-3"
               >
                 <h3 className='p-0 m-0 font-weight-bold font-italic'>
                   Fuse
                 </h3>
-              </button>
+              </button> */}
               <button 
                 disabled={!canRandomize} 
                 onClick={randomFusionUrl}

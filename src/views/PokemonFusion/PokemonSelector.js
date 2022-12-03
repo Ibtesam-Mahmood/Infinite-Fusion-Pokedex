@@ -21,7 +21,7 @@ export default function PokemonSelector({selected, onSelect}) {
     <div className='selectorRoot p-0 m-0'>
       {
         find ? <PokemonSelectorList
-          onSelect={handleSelect}
+          onSelect={(selection) => handleSelect(selection ?? selected)}
         /> : <PokemonSelectorView 
           className='p-2' 
           pokemonID={selected} 
