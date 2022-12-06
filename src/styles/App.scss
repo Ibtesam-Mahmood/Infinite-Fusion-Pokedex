@@ -83,6 +83,8 @@ body {
   .pokemonTokenImg{
       // position: relative;
       // width: fit-content;
+      min-height: 25vh;
+      min-width: 25vh;
       box-sizing: border-box;
       -moz-box-sizing: border-box;
       -webkit-box-sizing: border-box;
