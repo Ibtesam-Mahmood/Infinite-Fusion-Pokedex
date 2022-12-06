@@ -12,8 +12,7 @@ export default function PokemonSelectorView({pokemonID, onSelect, onFind}) {
   const pokemonIDs = useSelector(state => state.pokemonInfo.map(p => p.getID()));
 
   const disabled = pokemon == null;
-  const title = pokemon?.name ?? 'Select a Pokemon';
-  const pokemonIDTitle = `No. ${pokemon?.getGameID() ?? '-'}`;
+  const pokemonIDTitle = pokemon?.getGameID() == null ? 'Select a Pokemon' : `No. ${pokemon?.getGameID() ?? '-'}`;
 
   function getPokemonTypeColor() {
     if(pokemon == null){
@@ -38,7 +37,7 @@ export default function PokemonSelectorView({pokemonID, onSelect, onFind}) {
   return (
     <table className='selectorDisplay'>
       <thead>
-        <tr><th colSpan="4" className='text-capitalize'>{title}</th></tr>
+        <tr><th colSpan="4" className='text-capitalize'>{pokemonIDTitle}</th></tr>
       </thead>
       <tbody>
         <tr className=''>
@@ -50,7 +49,7 @@ export default function PokemonSelectorView({pokemonID, onSelect, onFind}) {
               <div className="col col-6">
                 <div className="row justify-content-between gy-2">
                   <div className="col-6 text-start">
-                    <h5 className='text-capitalize p-0 m-0'>{pokemonIDTitle}</h5>
+                    <h5 className='text-capitalize p-0 m-0'>{pokemon?.name}</h5>
                   </div>
                   <div className="col-6 d-flex justify-content-end">
                     {

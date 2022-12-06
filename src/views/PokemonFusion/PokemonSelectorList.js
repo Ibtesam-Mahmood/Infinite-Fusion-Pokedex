@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import PokemonSelectorView from './PokemonSelectorView';
 import PaginatedPokemonList from '../PokemonList/PaginatedPokemonList';
@@ -10,7 +10,22 @@ export default function PokemonSelectorList({onSelect}) {
   const pokemonList = useSelector(state => state.pokemonInfo);
 
   const searchRef = useRef(null);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState(''); // The term in the search field
+  const [filter, setFilter] = useState(''); // The term that filters the pokemon, on a delayed binding to the search
+
+  // Auto focus
+  useEffect(() => {
+    searchRef.current.focus();
+  }, []);
+
+  // Delayed binding of search term to filter term
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      setFilter(search)
+    }, 200);
+    
+    return () => clearTimeout(delayDebounceFn);
+  }, [search]);
 
   function handleSearch(event){
     event.preventDefault();
@@ -37,7 +52,7 @@ export default function PokemonSelectorList({onSelect}) {
           pokemonList.length != 0 ? 
             <PaginatedPokemonList 
               pokemon={pokemonList} 
-              search={search}
+              search={filter}
               mini={true}
               onItemTap={selectPokemon}
             /> 
@@ -55,7 +70,8 @@ export default function PokemonSelectorList({onSelect}) {
           <h4 className='p-0 m-0 pb-3'>Pokemon Selector</h4>
         </div>
         <div className='floatingFooter'>
-          <form className='floatingFooterForm mx-5 mb-1' onSubmit={handleSearch}>
+          {/* <form className='floatingFooterForm mx-5 mb-1' onSubmit={handleSearch}> */}
+          <form className='floatingFooterForm mx-5 mb-1'>
               <input 
                 ref={searchRef}
                 type="text" 
@@ -63,13 +79,14 @@ export default function PokemonSelectorList({onSelect}) {
                 id="search-pokemon" 
                 aria-describedby="search-pokemon"
                 placeholder="Search Pokemon..."
+                onChange={handleSearch}
               />
-              <button 
+              {/* <button 
                 className="btn btn-primary btn-lg ms-3" 
                 type="submit"
               >
                 <FontAwesomeIcon icon={faMagnifyingGlass} />
-              </button>
+              </button> */}
           </form>
         </div>
       </div>
