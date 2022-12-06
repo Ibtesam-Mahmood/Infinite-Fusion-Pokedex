@@ -86,7 +86,7 @@ export default function PokemonFusionPage() {
               <button 
                 disabled={!canRandomize} 
                 onClick={randomFusionUrl}
-                type="button" className="btn btn-primary"
+                type="button" className="btn btn-warning btn-lg fuseButton"
               >
                 <FontAwesomeIcon icon={faShuffle} />
               </button>
