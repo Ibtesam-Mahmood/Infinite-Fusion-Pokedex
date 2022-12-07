@@ -197,7 +197,7 @@ export default function PokemonSelectorView({pokemonID, onSelect, onFind}) {
 
                   {/* Evolution Buttons */}
                   {
-                    disabled || evIndex == null ? null : evolution.chain.map((e, i) => {
+                    disabled || evIndex == null || evolution?.chain == null ? null : (evolution?.chain ?? []).map((e, i) => {
                       return Math.abs(evIndex - i) != 1 ? (<></>) : [
                         ...e.map((ch, j) => {
                           const isInGame = evolutionSpeciesMap[ch.speciesID][1].isInGame();
