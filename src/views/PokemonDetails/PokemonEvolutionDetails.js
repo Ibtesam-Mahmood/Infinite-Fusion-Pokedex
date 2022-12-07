@@ -9,7 +9,7 @@ import '../../styles/PokemonStats.scss';
 export default function PokemonEvolutionDetails({evolution}) {
 
   const speciesIDs = evolution?.getSpeciesIDs();
-  const speciesMap = usePokemonBySpecies(speciesIDs ?? [], true);
+  const [speciesMap, loaded] = usePokemonBySpecies(speciesIDs ?? [], true);
   
   return (
     <div className='statsContainer container py-1'>

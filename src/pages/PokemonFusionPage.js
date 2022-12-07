@@ -69,7 +69,7 @@ export default function PokemonFusionPage() {
               <div className='fusionPageItem col col-12 p-1 h-100'>
                 <PokemonFuser fuse1={pokemon1} fuse2={pokemon2}/> 
               </div>
-              <div className='fusionPageItem col col-12 p-2 d-flex justify-content-center my-3'>
+              <div style={{overflow: 'hidden'}} className='col col-12 p-2 d-flex justify-content-center my-3'>
                 <button 
                   disabled={!canRandomize} 
                   onClick={randomFusionUrl}
@@ -82,24 +82,6 @@ export default function PokemonFusionPage() {
                 <PokemonFuser fuse1={pokemon2} fuse2={pokemon1}/> 
               </div>
             </div>
-            {/* <div className='fuseFloating'> */}
-              {/* <button 
-                disabled={!canFuse} 
-                onClick={()=>{}}
-                type="button" className="btn btn-warning btn-lg fuseButton me-3"
-              >
-                <h3 className='p-0 m-0 font-weight-bold font-italic'>
-                  Fuse
-                </h3>
-              </button> */}
-              {/* <button 
-                disabled={!canRandomize} 
-                onClick={randomFusionUrl}
-                type="button" className="btn btn-warning btn-lg fuseButton"
-              >
-                <FontAwesomeIcon icon={faShuffle} />
-              </button> */}
-            {/* </div> */}
           </div>
         </div>
       </div>

@@ -28,7 +28,7 @@ const usePokemonBySpeciesHook = (ids, load = false) => {
 
     // console.log(pokemon);
 
-    return speciesMap;
+    return [speciesMap, loaded];
 }
 
 export default usePokemonBySpeciesHook;

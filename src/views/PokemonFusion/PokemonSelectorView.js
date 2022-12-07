@@ -1,18 +1,41 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {useSelector} from 'react-redux';
-import { useLoadPokemon } from '../../services/hook';
-import PokemonStats from '../PokemonDetails/PokemonStats';
+import { useLoadPokemon, useSpecies, useEvolutionChain, usePokemonBySpecies } from '../../services/hook';
+// import PokemonStats from '../PokemonDetails/PokemonStats';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import { faMagnifyingGlassPlus, faInfoCircle, faClose, faShuffle } from '@fortawesome/free-solid-svg-icons'
+import { faMagnifyingGlassPlus, faInfoCircle, faClose, faShuffle, faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons'
 import PokemonTypes from '../TypeImages/PokemonTypeImage';
 
 export default function PokemonSelectorView({pokemonID, onSelect, onFind}) {
 
-  const pokemon = useLoadPokemon(pokemonID);
+  const [evIndex, setEvIndex] = useState(null);
+  
   const pokemonIDs = useSelector(state => state.pokemonInfo.map(p => p.getID()));
+
+  const pokemon = useLoadPokemon(pokemonID);
+  const species = useSpecies(pokemon?.getSpeciesID(), true);
+  const evolution = useEvolutionChain(species?.getEvolutionID(), true);
+
+  const evolutionSpeciesIDs = evolution?.getSpeciesIDs();
+  const [evolutionSpeciesMap, loadedSpeciesMap] = usePokemonBySpecies(evolutionSpeciesIDs ?? [], true);
 
   const disabled = pokemon == null;
   const pokemonIDTitle = pokemon?.getGameID() == null ? 'Select a Pokemon' : `No. ${pokemon?.getGameID() ?? '-'}`;
+
+  // Set evolution index
+  useEffect(() => {
+    
+    if(loadedSpeciesMap){
+      // Set the evolution index
+      const index = getPokemonEvolutionIndex();
+      console.log(index);
+      setEvIndex(index);
+    }
+    else{
+      setEvIndex(null);
+    }
+
+  }, [loadedSpeciesMap, pokemonID]);
 
   function getPokemonTypeColor() {
     if(pokemon == null){
@@ -23,6 +46,28 @@ export default function PokemonSelectorView({pokemonID, onSelect, onFind}) {
     // console.log(typeOne);
     return `typeBackground-${typeOne}`;
 
+  }
+  
+  function getPokemonEvolutionIndex() {
+    for (let i = 0; i < evolution?.chain?.length ?? 0; i++) {
+      const evolutionChain = evolution.chain[i];
+      for (let j = 0; j < evolutionChain.length; j++) {
+        const ev = evolutionChain[j];
+        const [species, poke] = evolutionSpeciesMap[ev.speciesID];
+        if(poke.id === pokemonID){
+          return i;
+        }
+      }
+    }
+
+    return null;
+  }
+
+  function selectEvolution(pokeEvolution){
+    if(loadedSpeciesMap){
+      const [species, poke] = evolutionSpeciesMap[pokeEvolution.speciesID];
+      onSelect(poke.id);
+    }
   }
   
   function removeSelection() {
@@ -48,24 +93,27 @@ export default function PokemonSelectorView({pokemonID, onSelect, onFind}) {
               
               <div className="col col-6">
                 <div className="row justify-content-between gy-2">
-                  <div className="col-6 text-start">
-                    <h5 className='text-capitalize p-0 m-0'>{pokemon?.name}</h5>
-                  </div>
-                  <div className="col-6 d-flex justify-content-end">
+
+                  {/* Remove Button */}
+                  <div className="col-12 d-flex justify-content-start align-items-center mb-1">
                     {
                       disabled ? null : 
                       <button 
                         onClick={removeSelection}
                         disabled={disabled} 
                         type="button" 
-                        className="btn btn-sm btn-outline-danger"
+                        className="btn btn-sm btn-outline-danger me-3"
                       >
                         <div className='px-1'>
                           <FontAwesomeIcon icon={faClose} color={'$danger'} />
                         </div>
                       </button>
                     }
+
+                    {/* Pokemon Name */}
+                    <h5 className='text-capitalize p-0 m-0'>{pokemon?.name}</h5>
                   </div>
+
                   <div className={`${getPokemonTypeColor()} selectedPokemonImage mx-auto mb-3`} >
                     {
                       disabled ? <div className='d-flex justify-content-center my-5 mx-3'>
@@ -90,30 +138,6 @@ export default function PokemonSelectorView({pokemonID, onSelect, onFind}) {
                       </>
                     }
                   </div>
-
-                  {/* Buttons */}
-                  {
-                    disabled ? null : 
-                    <a 
-                      type="button" 
-                      className="btn col col-4 btn-lg btn-outline-info" 
-                      href={`/poke-fusion-dex/pokemon/${pokemonID}`} 
-                    >
-                      <div className='p-2'>
-                        <FontAwesomeIcon icon={faInfoCircle}/>
-                      </div>
-                    </a>
-                  }
-                  <button type="button" className="btn col col-4 btn-lg btn-outline-primary" onClick={shuffleSelection}>
-                    <div className='p-2'>
-                      <FontAwesomeIcon icon={faShuffle} />
-                    </div>
-                  </button>
-                  <button type="button" className="btn col col-4 btn-lg btn-outline-warning" onClick={onFind}>
-                    <div className='p-2'>
-                      <FontAwesomeIcon icon={faMagnifyingGlassPlus} />
-                    </div>
-                  </button>
                 </div>
 
                 {/* Abilities */}
@@ -133,14 +157,62 @@ export default function PokemonSelectorView({pokemonID, onSelect, onFind}) {
                   }
                   </div>
                 </div> */}
+              {/* Stats */}
+                  {/* <div className="col col-12">
+                    {disabled ? null : <PokemonStats pokemon={pokemon} variant={true}/>}
+                  </div> */}
               </div>
 
-              {/* Stats */}
-              <div className="col col-6">
-                <div className="row justify-content-between gy-2">
-                  <div className="col col-12">
-                    {disabled ? null : <PokemonStats pokemon={pokemon} variant={true}/>}
-                  </div>
+              {/* Buttons */}
+              <div className="col col-6 align-items-start d-flex my-5">
+                <div className="row m-0 justify-content-around w-100 gy-2">
+
+                  {/* Info Button */}
+                  {
+                    disabled ? null : 
+                    <a 
+                      type="button" 
+                      className="btn col-3 btn-outline-info" 
+                      href={`/poke-fusion-dex/pokemon/${pokemonID}`} 
+                    >
+                      <div className='p-2'>
+                        <FontAwesomeIcon icon={faInfoCircle}/>
+                      </div>
+                    </a>
+                  }
+
+                  {/* Shuffle Button */}
+                  <button type="button" className="btn col-3 btn-outline-primary" onClick={shuffleSelection}>
+                    <div className='p-2'>
+                      <FontAwesomeIcon icon={faShuffle} />
+                    </div>
+                  </button>
+
+                  {/* Selector Button */}
+                  <button type="button" className="btn col-3 btn-outline-warning" onClick={onFind}>
+                    <div className='p-2'>
+                      <FontAwesomeIcon icon={faMagnifyingGlassPlus} />
+                    </div>
+                  </button>
+
+                  {/* Evolution Buttons */}
+                  {
+                    disabled || evIndex == null ? null : evolution.chain.map((e, i) => {
+                      return Math.abs(evIndex - i) != 1 ? (<></>) : [
+                        ...e.map((ch, j) => {
+                          return (
+                            <button key={`${i}-${j}`} type="button" className={`btn col-10 btn-outline-${i > evIndex ? 'success' : 'danger'}`} onClick={(_) => selectEvolution(ch)}>
+                              <div className='p-2'>
+                                <FontAwesomeIcon icon={i > evIndex ? faArrowUp : faArrowDown} />
+                                <strong className='ms-1 m-0 p-0 text-capitalize'>{ch.name}</strong>
+                              </div>
+                            </button>
+                          )
+                        })
+                      ]
+                    })
+                  }
+
                 </div>
               </div>
             </div>
