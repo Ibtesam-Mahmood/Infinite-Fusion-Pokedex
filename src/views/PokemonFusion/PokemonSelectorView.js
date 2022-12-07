@@ -200,7 +200,8 @@ export default function PokemonSelectorView({pokemonID, onSelect, onFind}) {
                     disabled || evIndex == null ? null : evolution.chain.map((e, i) => {
                       return Math.abs(evIndex - i) != 1 ? (<></>) : [
                         ...e.map((ch, j) => {
-                          return (
+                          const isInGame = evolutionSpeciesMap[ch.speciesID][1].isInGame();
+                          return !isInGame ? (<></>) : (
                             <button key={`${i}-${j}`} type="button" className={`btn col-10 btn-outline-${i > evIndex ? 'success' : 'danger'}`} onClick={(_) => selectEvolution(ch)}>
                               <div className='p-2'>
                                 <FontAwesomeIcon icon={i > evIndex ? faArrowUp : faArrowDown} />
