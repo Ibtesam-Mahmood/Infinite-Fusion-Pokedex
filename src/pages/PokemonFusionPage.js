@@ -6,6 +6,7 @@ import PokemonFuser from '../views/PokemonFusion/PokemonFuser';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faShuffle } from '@fortawesome/free-solid-svg-icons';
+import ShareButton from '../views/ShareButton';
 
 import '../styles/PokemonFusion.scss';
 
@@ -48,6 +49,10 @@ export default function PokemonFusionPage() {
     navigate(`/poke-fusion-dex/fuse?idOne=${randomID1}&idTwo=${randomID2}&fuse=true`);
   }
 
+  function getCurrentUrl(){
+    return window.location.href;
+  }
+
   return (
     <div className='fusionPageRoot'>
       <AppNavbar active='fuse'/>
@@ -69,7 +74,7 @@ export default function PokemonFusionPage() {
               <div className='fusionPageItem col col-12 p-1 h-100'>
                 <PokemonFuser fuse1={pokemon1} fuse2={pokemon2}/> 
               </div>
-              <div style={{overflow: 'hidden'}} className='col col-12 p-2 d-flex justify-content-center my-3'>
+              <div style={{overflow: 'hidden'}} className='fusionPageItem col col-12 p-2 d-flex justify-content-center my-3'>
                 <button 
                   disabled={!canRandomize} 
                   onClick={randomFusionUrl}
@@ -77,11 +82,26 @@ export default function PokemonFusionPage() {
                 >
                   <FontAwesomeIcon icon={faShuffle} />
                 </button>
+                {
+                  canFuse ? <ShareButton disabled={!canRandomize} url={getCurrentUrl()} /> : null
+                }
               </div>
               <div className='fusionPageItem col col-12 p-1 h-100'>
                 <PokemonFuser fuse1={pokemon2} fuse2={pokemon1}/> 
               </div>
             </div>
+            {/* <div className='fuseFloating'> */}
+              {/* <button 
+                disabled={!canFuse} 
+                onClick={()=>{}}
+                type="button" className="btn btn-warning btn-lg fuseButton me-3"
+              >
+                <h3 className='p-0 m-0 font-weight-bold font-italic'>
+                  Fuse
+                </h3>
+              </button> */}
+              
+            {/* </div> */}
           </div>
         </div>
       </div>
